@@ -73,7 +73,7 @@ Copy each quoted field independently. This is a self-contained Hackachusetts sub
 
 ## Demo video URL
 
-> [TODO BEFORE SUBMISSION: ADD PUBLIC VIDEO URL]
+> <https://youtu.be/P1APBPukqIg>
 
 ## Team representative
 

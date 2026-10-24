@@ -6,7 +6,6 @@ Track: **Healthcare & Biotech**
 
 ## Blocking TODOs
 
-- [ ] Replace `[TODO BEFORE SUBMISSION: ADD PUBLIC VIDEO URL]` with the public video URL everywhere.
 - [ ] Replace `[TODO BEFORE SUBMISSION: TEAM REPRESENTATIVE]` with the representative’s name.
 - [ ] Fill the actual team entries, up to four people, and delete every unused slot:
   - `[TODO BEFORE SUBMISSION: TEAM MEMBER 1 — NAME AND ROLE]`
@@ -33,7 +32,7 @@ Track: **Healthcare & Biotech**
 
 ## Video
 
-- [ ] Public video uses an allowed hosting platform and plays in an incognito/private window.
+- [x] Public demo video URL is set to <https://youtu.be/P1APBPukqIg>; the watch and oEmbed endpoints returned HTTP 200 without authentication.
 - [ ] Runtime is below three minutes; target 2:48.
 - [ ] Footage visibly demonstrates the working app, both highlight directions, camera interaction, upload/privacy, limitations, and Kiro spec files.
 - [ ] Recording is 1080p with readable text and no notifications or private data.

@@ -6,7 +6,7 @@
 
 An educational viewer that links a labelled foot radiograph to an interactive 3D skeleton, helping people connect a flat X-ray projection with the bones it represents.
 
-**[Live](https://ziwen-xie.github.io/SkeletonMap/)** · **[Demo](https://ziwen-xie.github.io/SkeletonMap/#/viewer)** · **[Source](https://github.com/ziwen-xie/SkeletonMap)**
+**[Live](https://ziwen-xie.github.io/SkeletonMap/)** · **[Demo](https://ziwen-xie.github.io/SkeletonMap/#/viewer)** · **[Demo video](https://youtu.be/P1APBPukqIg)** · **[Source](https://github.com/ziwen-xie/SkeletonMap)**
 
 Built for the **Hackachusetts Healthcare & Biotech track** with Kiro spec-driven development.
 

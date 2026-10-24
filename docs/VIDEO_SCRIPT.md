@@ -82,7 +82,7 @@
 - [ ] Upload to a public host allowed by the Hackachusetts rules.
 - [ ] Verify the final URL in an incognito/private window with no login.
 - [ ] Confirm the title, description, and spoken claims say SkeletonMap and Healthcare & Biotech.
-- [ ] Replace `[TODO BEFORE SUBMISSION: ADD PUBLIC VIDEO URL]` in every submission document.
+- [x] Added the public demo video URL, <https://youtu.be/P1APBPukqIg>, to the submission documents.
 
 ## If the 3D model looks small
 

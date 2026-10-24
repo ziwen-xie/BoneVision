@@ -12,7 +12,7 @@ Submission materials for the **Healthcare & Biotech** track. Supporting project 
 | Live app | <https://ziwen-xie.github.io/SkeletonMap/> |
 | Direct demo | <https://ziwen-xie.github.io/SkeletonMap/#/viewer> |
 | Public repository | <https://github.com/ziwen-xie/SkeletonMap> |
-| Demo video | [TODO BEFORE SUBMISSION: ADD PUBLIC VIDEO URL] |
+| Demo video | <https://youtu.be/P1APBPukqIg> |
 | Team representative | [TODO BEFORE SUBMISSION: TEAM REPRESENTATIVE] |
 | Team member 1 | [TODO BEFORE SUBMISSION: TEAM MEMBER 1 — NAME AND ROLE] |
 | Team member 2 | [TODO BEFORE SUBMISSION: TEAM MEMBER 2 — NAME AND ROLE] |
