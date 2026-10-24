@@ -669,6 +669,13 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - Keyboard reachable with a visible focus indicator
     - _Requirements: 9.5, 13.1, 13.2_
 
+  - [ ] 38.5 Trim the roadmap section to headings only
+    - Remove the section lead-in paragraph
+    - Remove both roadmap card body paragraphs
+    - Remove the regulatory caveat callout
+    - Retain the heading, the stage labels and the two card titles
+    - _Requirements: 9.4_
+
 ## Notes
 
 - Tasks marked with `*` are optional test tasks that can be skipped for faster MVP, but are recommended for hackathon quality

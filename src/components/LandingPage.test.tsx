@@ -313,12 +313,10 @@ describe('LandingPage', () => {
   it('presents the roadmap as work that does not exist yet', () => {
     render(<LandingPage />);
 
-    // `aria-labelledby` makes it a named region, so the heading announces the
-    // section before any of its contents are read out.
     const roadmap = screen.getByRole('region', { name: /what.s next/i });
 
-    // The two directions, and only two: a roadmap padded out to fill a row
-    // reads as a promise rather than a plan.
+    // Two directions, and only two: a roadmap padded out to fill a row reads
+    // as a promise rather than a plan.
     const list = within(roadmap).getByRole('list');
     expect(within(list).getAllByRole('listitem')).toHaveLength(2);
     expect(
@@ -330,33 +328,10 @@ describe('LandingPage', () => {
       within(roadmap).getByRole('heading', { name: /look unusual/i })
     ).toBeInTheDocument();
 
-    /*
-      Tense is what this test is really for. Someone who reads only the second
-      card heading - "point out the parts of an X-ray that look unusual" -
-      could take it for a feature of the current build, so the section denies
-      that outright, each entry is stage labelled above its own heading, and
-      the denial sits ahead of the cards in document order rather than in a
-      footnote under them.
-    */
-    const leadIn = within(roadmap).getByText(/neither item below is built/i);
-    expect(
-      leadIn.compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING
-    ).not.toBe(0);
+    // The section is now headings only, so the stage labels carry the whole
+    // future tense on their own. Without them the second title could be read
+    // as something the current build already does.
     expect(within(roadmap).getByText(/^planned$/i)).toBeInTheDocument();
     expect(within(roadmap).getByText(/^further out$/i)).toBeInTheDocument();
-    expect(
-      within(roadmap).getByText(/nothing on your image is assessed today/i)
-    ).toBeInTheDocument();
-
-    /*
-      The regulatory caveat, which is not optional framing here: software that
-      marks findings on a medical image is a device, not a feature, and the
-      footer's "not a medical device" has to stay true with this section on the
-      page. One sentence carrying both halves - what it would take, and that
-      this is the hard part - so a rewrite cannot drop one and keep the other.
-    */
-    const caveat = within(roadmap).getByText(/regulated\s*medical device/i);
-    expect(caveat).toHaveTextContent(/clinical validation/i);
-    expect(caveat).toHaveTextContent(/difficult/i);
   });
 });

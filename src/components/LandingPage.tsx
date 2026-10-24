@@ -21,15 +21,6 @@
  * it waits for a call to action. There is a test holding that still, and it
  * clicks through afterwards so the absence cannot pass for a dead spy.
  *
- * The roadmap section
- * -------------------
- * "What's next" describes work that does not exist, on a page about a health
- * tool, which makes its tense the load-bearing part. Each entry is stage
- * labelled, the lead-in says outright that neither is built, and the second
- * entry - marking what looks unusual on an image - carries the caveat that
- * software doing that is a regulated medical device needing clinical
- * validation. The footer still reads "not a medical device", and this section
- * has to leave that sentence true for a visitor who skims it.
  *
  * Layout
  * ------
@@ -87,7 +78,6 @@
  *   success-800 on success-50 ........... 7.29:1   privacy card
  *   accent-800 on accent-50 ............. 8.15:1   capability icon
  *   secondary-900 on secondary-50 ....... 8.87:1   capability icon
- *   secondary-800 on secondary-50 ....... 7.09:1   roadmap caveat callout
  * neutral-500 (4.74:1 on white) is avoided throughout: it clears AA only just,
  * and not at all once a tint sits under it. Body text stops at neutral-600.
  *
@@ -221,12 +211,10 @@ const ROADMAP = [
   {
     stage: 'Planned',
     title: 'Train on real biological data',
-    body: 'Every bone region in the demo is a polygon traced by hand against one specific radiograph, which is the reason a single foot is all that is mapped. The aim is to learn that mapping from real annotated imaging, so bones on an uploaded X-ray could be located automatically rather than waiting on a hand-authored outline set for each image.',
   },
   {
     stage: 'Further out',
     title: 'Point out the parts of an X-ray that look unusual',
-    body: 'Past naming anatomy: marking areas of an image that depart from typical bone structure, with a plain-language note on what that sort of finding generally indicates. Nothing on your image is assessed today, and no version of this would hand back a diagnosis.',
   },
 ];
 
@@ -503,12 +491,6 @@ export default function LandingPage() {
             >
               What&rsquo;s next
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-700">
-              Neither item below is built. What BoneVision does today is label
-              anatomy on one hand-traced radiograph and explain what each bone
-              is for, and that is the whole of it - the rest of this section is
-              where the work is headed.
-            </p>
 
             <ul className="mt-10 grid gap-6 md:grid-cols-2">
               {ROADMAP.map((item) => (
@@ -522,24 +504,10 @@ export default function LandingPage() {
                   <h3 className="font-display mt-2 text-lg font-semibold leading-snug text-neutral-900">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-base leading-relaxed text-neutral-800">
-                    {item.body}
-                  </p>
                 </li>
               ))}
             </ul>
 
-            {/*
-              The caveat sits outside the grid on purpose: it qualifies the
-              second card, and a visitor who reads only the headings should
-              still hit it on the way to the closing band.
-            */}
-            <p className="mt-6 rounded-xl border border-secondary-200 bg-secondary-50 p-5 text-base leading-relaxed text-secondary-800 sm:p-6">
-              The second one is the difficult half, and worth saying plainly:
-              software that flags findings on a medical image is a regulated
-              medical device, so it would need clinical validation and review
-              long before anyone should rely on what it says.
-            </p>
           </div>
         </section>
 
