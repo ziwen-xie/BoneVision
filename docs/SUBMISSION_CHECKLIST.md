@@ -33,10 +33,12 @@ Track: **Healthcare & Biotech**
 ## Video
 
 - [x] Public demo video URL is set to <https://youtu.be/P1APBPukqIg>; the watch and oEmbed endpoints returned HTTP 200 without authentication.
-- [ ] Runtime is below three minutes; target 2:48.
+- [x] Runtime is 90.200 seconds (1:30.2), below three minutes.
 - [ ] Footage visibly demonstrates the working app, both highlight directions, camera interaction, upload/privacy, limitations, and Kiro spec files.
-- [ ] Recording is 1080p with readable text and no notifications or private data.
-- [ ] Video contains no copyrighted music, unlicensed material, or unauthorized third-party marks.
+- [x] The master is 1920×1080, and its burned-in captions use a high-contrast backing; the edit report records successful visual checks at six timestamps.
+- [ ] Confirm the final frames contain no notifications or private data.
+- [x] The published master is silent and contains no copyrighted music.
+- [ ] Confirm the video contains no unlicensed material or unauthorized third-party marks.
 
 ## Accuracy and rights
 

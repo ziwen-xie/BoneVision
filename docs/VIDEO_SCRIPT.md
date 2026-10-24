@@ -1,89 +1,95 @@
-# SkeletonMap demo video script
+# SkeletonMap final demo video script
 
-**Target runtime: 2:48. Hard stop: 2:50.** This plan leaves at least ten seconds before the three-minute limit. Keep the pace conversational and let the functioning app occupy almost the entire frame.
+- **Final runtime:** 90.200 seconds (1:30.2)
+- **Published video:** <https://youtu.be/P1APBPukqIg>
+- **Video format:** 1920×1080, H.264 High profile, progressive, 30 fps
+- **Audio:** The published captioned master is intentionally silent, has no audio stream or music, and uses burned-in captions. Narration is optional.
 
-## Before recording
+## Final edit structure
 
-1. Open these tabs in order: live landing page, direct viewer, upload view if preloading it helps, then the public GitHub repository at `.kiro/specs/bone-vision/`.
-2. Use a current desktop browser with WebGL enabled. Reload the direct viewer once so assets are cached.
-3. Set the browser width so the X-ray and 3D viewer sit side by side. Use a readable browser zoom; do not shrink text to fit more on screen.
-4. Practice locating the first metatarsal polygon and a large 3D bone before recording.
-5. Keep a harmless JPEG or PNG under 10MB ready for the upload shot. Do not use a real person’s sensitive medical image.
+The delivered video uses the following verified edit rather than the earlier long-form recording plan:
 
-## Timed shot and narration plan
+- **00:00.000–00:04.000 (final timeline):** SkeletonMap opener.
+- **Source 00:00.000–00:40.800:** Landing-page introduction, purpose, workflow, audience, privacy, and demo call to action.
+- **Source 00:40.800–00:42.800:** Removed loading/static hold.
+- **Source 00:42.800–01:16.500:** Working demo footage with the full browser frame, X-ray/3D layout, model rotation, synchronized highlighting, and educational panel updates.
+- **Source 01:16.500–01:17.600:** Removed transition/dead interval.
+- **Source 01:17.600–01:25.300:** Upload/return flow and final landing-page context.
+- **Source 01:25.300–01:29.967:** Removed repeated static tail.
+- **01:26.200–01:30.200 (final timeline):** Closer with the live site and repository URLs.
 
-### 0:00–0:12 — The problem
+## Exact burned-in captions and optional narration
 
-**Shot:** Start on the landing-page hero with the product name and radiograph visible.
+These ten cues are the exact text and timing in `SkeletonMap_Demo_Final.srt`. If a narrated alternate is produced, read this wording verbatim and use the cue times as pacing targets. Leave the first four seconds and final four seconds unvoiced.
 
-**Say:** “An X-ray compresses a three-dimensional body into one flat image. If you haven’t trained in radiology, it can be hard to connect a name in an explanation with the bone you’re actually looking at.”
+```srt
+1
+00:00:04,200 --> 00:00:11,600
+SkeletonMap is an educational X-ray reader that connects a radiograph
+with an interactive three-dimensional skeleton.
 
-### 0:12–0:25 — Landing page and purpose
+2
+00:00:11,600 --> 00:00:20,500
+It helps patients, students, and clinicians move from a flat image
+to an understandable view of anatomy.
 
-**Shot:** Scroll just enough to show the core explanation, then return to the **Try the demo** button.
+3
+00:00:20,500 --> 00:00:28,900
+The workflow is simple: open the demo or choose an image,
+confirm the body part, then explore the structures on screen.
 
-**Say:** “SkeletonMap is an educational bridge between those views. It pairs a labelled radiograph with an interactive skeleton and explains the anatomy in everyday language.”
+4
+00:00:28,900 --> 00:00:37,300
+Uploaded images are processed locally in the browser,
+so sensitive files are not sent to an external service.
 
-### 0:25–0:39 — Enter the working demo
+5
+00:00:37,300 --> 00:00:44,600
+The current prototype focuses on foot anatomy
+and makes its educational, not diagnostic, purpose explicit.
 
-**Shot:** Click **Try the demo**. Pause on the split viewer so all three areas—the X-ray, 3D foot, and educational panel—are readable.
+6
+00:00:44,600 --> 00:00:51,900
+In demo mode, a foot X-ray, a manipulable bone model,
+and plain-language guidance appear together.
 
-**Say:** “There’s no login. The current demo focuses on one adult right-foot dorsoplantar X-ray, with nineteen regions mapped by hand to nineteen separately interactive meshes.”
+7
+00:00:51,900 --> 00:01:01,100
+Hovering over a structure highlights the same bone in both views
+and updates the learning panel with its role and common injuries.
 
-### 0:39–1:03 — X-ray to 3D highlight and panel
+8
+00:01:01,100 --> 00:01:09,600
+This synchronized response links two-dimensional radiography
+with three-dimensional position, making spatial relationships easier to see.
 
-**Shot:** Hover the first metatarsal polygon on the X-ray. Hold steady for several seconds. Point out the matching 3D color and changed educational panel without covering them with the cursor.
+9
+00:01:09,600 --> 00:01:17,700
+The model can be rotated and examined from different angles,
+while individual bones remain clearly selectable.
 
-**Say:** “Here’s the first metatarsal. Hovering its X-ray region updates shared state immediately. The same configured color appears on the corresponding 3D bone, and the panel follows with its name, what it does, and common problems. Nothing here is diagnosing this film.”
+10
+00:01:17,700 --> 00:01:25,800
+Users can also switch to upload mode, choose an X-ray,
+and keep the entire exploration on their own device.
+```
 
-### 1:03–1:22 — 3D back to X-ray
+## Upload and recording checks
 
-**Shot:** Move away, then hover a clear bone in the 3D model. Hold while its X-ray polygon appears. If useful, hover one more bone slowly.
+If source footage or optional narration is recorded again:
 
-**Say:** “The link works in the other direction too. When I point at a bone in 3D, SkeletonMap finds the matching ID and sends the highlight back to the radiograph. Both views use the same mapping file rather than separate labels.”
+1. Use a current desktop browser with WebGL enabled and preload the viewer so the model is ready.
+2. Keep the X-ray, 3D viewer, and educational panel readable in the browser frame.
+3. Use only a harmless JPEG or PNG under 10MB for the upload shot; do not use a real person’s sensitive medical image.
+4. Preserve the local-processing and educational-not-diagnostic boundaries shown in the captions. Uploaded images are not analyzed or precisely registered, and DICOM decoding is not implemented.
+5. Hide notifications, private tabs, bookmarks, account avatars, and autofill suggestions.
+6. Use no copyrighted music, unlicensed stock overlays, or unauthorized third-party marks. No music is needed.
 
-### 1:22–1:45 — Focus and camera controls
+## Publication checks
 
-**Shot:** Click the hovered bone. Let the focus animation finish. Drag to orbit, scroll to zoom, then briefly right-click-drag to pan.
-
-**Say:** “Clicking selects the bone and moves the camera toward its registered bounds. I can still rotate to understand its position, zoom for a closer look, or pan across the model. The geometry is an original, stylized teaching model—not scan-derived or clinical-grade anatomy.”
-
-### 1:45–2:03 — Upload and privacy
-
-**Shot:** Switch to upload mode. Show the privacy notice and supported formats. Briefly select the prepared JPEG or PNG; show the body-region choice, but do not spend time waiting for a full exploration.
-
-**Say:** “A user can also choose a JPEG or PNG. Decoding happens in the browser, the image stays in memory, and there’s no upload server. The current foot polygons are static, so another image is not analyzed or precisely registered. DICOM decoding is not implemented yet.”
-
-### 2:03–2:19 — Safety boundary
-
-**Shot:** Return to demo mode and briefly frame the standing educational disclaimer or demo attribution marker.
-
-**Say:** “That boundary matters: SkeletonMap does not detect fractures, assess images, recommend treatment, or provide a diagnosis. It is a visual explanation aid for patients, students, clinicians, and educators.”
-
-### 2:19–2:39 — GitHub and Kiro’s role
-
-**Shot:** Switch to the public GitHub repository. Open `.kiro/specs/bone-vision/` and show `requirements.md`, `design.md`, `tasks.md`, and `tasks.meta.json` in the file list. Open one briefly if time permits.
-
-**Say:** “Kiro IDE was the primary environment. We worked requirements-first: acceptance criteria became interfaces and correctness properties, then a dependency-aware task graph. Bounded agents implemented individual tasks and validation caught real issues—from portrait X-ray coordinates and mesh-name mismatches to Pages paths, licensing, and the final rebrand. The historical folder name is kept for task history.”
-
-### 2:39–2:48 — Future direction and close
-
-**Shot:** Return to the landing page. Keep the final frame on the SkeletonMap name and live URL.
-
-**Say:** “Next, we’d learn mappings from responsibly annotated biological images, and only explore unusual-region detection with clinical validation. Try it at ziwen-xie.github.io/SkeletonMap.”
-
-## Recording checklist
-
-- [ ] Final cut is 2:30–2:50 and never reaches 3:00; judges may stop playback at exactly 3:00.
-- [ ] Record at 1080p with crisp text and a readable browser zoom.
-- [ ] Functioning app footage dominates; do not replace interaction with slides.
-- [ ] Hide desktop notifications, bookmarks containing private data, unrelated tabs, account avatars, and autofill suggestions.
-- [ ] Use no copyrighted music, unlicensed stock overlays, or third-party marks.
-- [ ] Upload to a public host allowed by the Hackachusetts rules.
-- [ ] Verify the final URL in an incognito/private window with no login.
-- [ ] Confirm the title, description, and spoken claims say SkeletonMap and Healthcare & Biotech.
-- [x] Added the public demo video URL, <https://youtu.be/P1APBPukqIg>, to the submission documents.
-
-## If the 3D model looks small
-
-Before recording, enter the demo, let auto-framing finish, and zoom in until the foot and hover colors read clearly while the X-ray remains visible. Rehearse the click target at that zoom. Do not describe the procedural model as medically accurate, clinical-grade, scan-derived, or suitable for image interpretation; call it a stylized spatial teaching model.
+- [x] Captioned master is 90.200 seconds, 1920×1080, H.264, progressive, 30 fps, and silent.
+- [x] Ten monotonic caption cues parse successfully; the last cue ends at 01:25.800.
+- [x] The master decoded from beginning to end without reported errors and uses MP4 faststart.
+- [x] Browser footage is proportionally scaled without cropping; tabs, address bar, and browser frame remain visible.
+- [ ] Review the complete published video once for readable text, hidden private data, and accurate claims.
+- [ ] Verify <https://youtu.be/P1APBPukqIg> in an incognito/private window with no login.
