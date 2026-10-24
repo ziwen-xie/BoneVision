@@ -1,0 +1,27 @@
+/**
+ * Tailwind CSS v4 entry point.
+ *
+ * v4 replaces the `@tailwind base/components/utilities` directives with a
+ * single `@import`, and no longer auto-discovers `tailwind.config.js` - the
+ * `@config` directive loads the healthcare palette defined there.
+ */
+@import 'tailwindcss';
+@config '../tailwind.config.js';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* The app shell uses h-screen / h-full chains, so the ancestors need height. */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}

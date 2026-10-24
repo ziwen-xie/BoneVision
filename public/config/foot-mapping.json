@@ -1,0 +1,493 @@
+{
+  "bodyPart": "foot",
+  "xrayDimensions": {
+    "width": 1061,
+    "height": 2431
+  },
+  "bones": [
+    {
+      "id": "distal-phalanx-1",
+      "name": "Distal Phalanx 1 (Big Toe Tip Bone)",
+      "function": "This is the small bone at the very tip of your big toe, and it sits right under the toenail. It gives the end of the toe its shape and takes the pressure every time you push off the ground to take a step. Because it is the last part of the foot to leave the ground, it does a lot of work during walking and running.",
+      "commonInjuries": [
+        "Broken toe tip from stubbing it or dropping something on it",
+        "Bruising and blood trapped under the toenail",
+        "Nail bed injury that damages how the nail grows"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [150, 95],
+          [250, 80],
+          [330, 140],
+          [335, 250],
+          [280, 300],
+          [180, 295],
+          [140, 220]
+        ]
+      },
+      "meshId": "Distal_Phalanx_1",
+      "highlightColor": "#FF6B6B"
+    },
+    {
+      "id": "proximal-phalanx-1",
+      "name": "Proximal Phalanx 1 (Big Toe Base Bone)",
+      "function": "This is the longer of the two bones in your big toe, sitting between the tip bone and the long bone behind it. Your big toe has only two bones, while your other toes each have three. This bone bends at the big toe joint and helps you balance and push forward with every step.",
+      "commonInjuries": [
+        "Turf toe, a sprain of the big toe joint from bending it too far back",
+        "Broken big toe from a direct knock or a hard stub",
+        "Stiff, painful big toe joint from wear and tear (hallux rigidus)"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [160, 300],
+          [290, 300],
+          [300, 400],
+          [285, 560],
+          [240, 625],
+          [150, 620],
+          [120, 500],
+          [130, 370]
+        ]
+      },
+      "meshId": "Proximal_Phalanx_1",
+      "highlightColor": "#FFD166"
+    },
+    {
+      "id": "sesamoid-bones",
+      "name": "Sesamoid Bones (Small Bones Under the Big Toe Joint)",
+      "function": "These are two tiny bones, each about the size of a pea, sitting inside the tendons under the ball of your big toe. They work like little pulleys that make the muscles pulling on your big toe stronger. They also cushion the area and spread out the pressure when you stand on your toes.",
+      "commonInjuries": [
+        "Sesamoiditis, a sore, inflamed feeling under the ball of the big toe",
+        "A crack or break in one of the sesamoids from impact or repeated pounding",
+        "Turf toe injuries that tear the tissue holding these bones in place"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [155, 660],
+          [230, 645],
+          [290, 690],
+          [285, 780],
+          [215, 800],
+          [155, 760]
+        ]
+      },
+      "meshId": "Sesamoid_Bones",
+      "highlightColor": "#EF476F"
+    },
+    {
+      "id": "metatarsal-1",
+      "name": "First Metatarsal (Big Toe Long Bone)",
+      "function": "This is the shortest and thickest of the five long bones in the front half of your foot, and it leads straight to your big toe. It carries more of your body weight than any of the other long foot bones. Every time you step off, a large share of the push comes through this bone.",
+      "commonInjuries": [
+        "Bunion, where the big toe drifts sideways and a bump forms at the joint",
+        "Stress fracture from running or jumping over long periods",
+        "Arthritis at the big toe joint, causing stiffness and pain"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [120, 700],
+          [320, 680],
+          [330, 820],
+          [270, 1050],
+          [245, 1250],
+          [150, 1300],
+          [110, 1100],
+          [105, 870]
+        ]
+      },
+      "meshId": "Metatarsal_1",
+      "highlightColor": "#06D6A0"
+    },
+    {
+      "id": "metatarsal-2",
+      "name": "Second Metatarsal (Second Toe Long Bone)",
+      "function": "This is usually the longest of the five long bones in the front of your foot, and it leads to your second toe. Its base is wedged tightly into the middle of your foot, which makes it the most firmly anchored of the group. That firm anchoring gives your foot stability, but it also means this bone absorbs a lot of shock.",
+      "commonInjuries": [
+        "Stress fracture, the most common one in the whole foot",
+        "Pain in the ball of the foot from too much pressure (metatarsalgia)",
+        "Midfoot injury at its base, where the bone meets the arch"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [380, 620],
+          [520, 610],
+          [530, 720],
+          [500, 950],
+          [470, 1180],
+          [440, 1300],
+          [375, 1290],
+          [365, 1050],
+          [370, 800]
+        ]
+      },
+      "meshId": "Metatarsal_2",
+      "highlightColor": "#118AB2"
+    },
+    {
+      "id": "metatarsal-3",
+      "name": "Third Metatarsal (Middle Toe Long Bone)",
+      "function": "This long bone runs from the middle of your foot out to your third toe. It sits in the centre of the five long bones and helps spread your weight evenly across the ball of your foot. It also works with its neighbours to keep the front of the foot from flattening out as you walk.",
+      "commonInjuries": [
+        "Stress fracture from repeated running or marching",
+        "Pain in the ball of the foot from uneven pressure",
+        "An irritated nerve between this bone and the next one (Morton's neuroma)"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [540, 640],
+          [665, 630],
+          [670, 750],
+          [640, 980],
+          [610, 1200],
+          [585, 1295],
+          [530, 1285],
+          [525, 1030],
+          [532, 810]
+        ]
+      },
+      "meshId": "Metatarsal_3",
+      "highlightColor": "#FFB703"
+    },
+    {
+      "id": "metatarsal-4",
+      "name": "Fourth Metatarsal (Fourth Toe Long Bone)",
+      "function": "This long bone connects the outer part of your midfoot to your fourth toe. It is more flexible than the bones on the inner side of the foot, which lets the outer edge of your foot adapt to uneven ground. It shares the load with the fifth metatarsal next to it when you push off.",
+      "commonInjuries": [
+        "Stress fracture from repeated impact",
+        "Pain in the ball of the foot near the fourth toe",
+        "Midfoot sprain or fracture where its base meets the arch bones"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [680, 680],
+          [790, 670],
+          [795, 790],
+          [765, 1010],
+          [730, 1210],
+          [700, 1300],
+          [650, 1290],
+          [650, 1040],
+          [665, 840]
+        ]
+      },
+      "meshId": "Metatarsal_4",
+      "highlightColor": "#8338EC"
+    },
+    {
+      "id": "metatarsal-5",
+      "name": "Fifth Metatarsal (Little Toe Long Bone)",
+      "function": "This is the long bone along the outer edge of your foot, running out to your little toe. Its base has a bump you can feel through the skin, and a strong tendon pulls on that bump. Because of where it sits, this bone takes the strain when your ankle rolls inward.",
+      "commonInjuries": [
+        "Jones fracture, a break near the base that is slow to heal",
+        "A chip pulled off the bony bump when the ankle rolls over",
+        "Stress fracture from long periods of running or walking"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [800, 710],
+          [900, 700],
+          [1000, 860],
+          [1000, 990],
+          [930, 1150],
+          [870, 1300],
+          [810, 1340],
+          [780, 1180],
+          [785, 950],
+          [790, 800]
+        ]
+      },
+      "meshId": "Metatarsal_5",
+      "highlightColor": "#FB5607"
+    },
+    {
+      "id": "toe-2-phalanges",
+      "name": "Second Toe Phalanges (Second Toe Bones)",
+      "function": "Your second toe is made of three small bones stacked end to end, from the knuckle out to the tip. They let the toe curl and grip, which helps you keep your balance when you stand or change direction. This toe often sticks out the furthest, so it meets the inside of your shoe first.",
+      "commonInjuries": [
+        "Broken toe from stubbing it or dropping something on it",
+        "Hammer toe, where the middle joint stays bent and rubs the shoe",
+        "A dislocated toe joint that slips out of place"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [390, 110],
+          [500, 105],
+          [520, 200],
+          [510, 330],
+          [520, 450],
+          [515, 600],
+          [440, 615],
+          [390, 560],
+          [380, 400],
+          [375, 250]
+        ]
+      },
+      "meshId": "Toe_2_Phalanges",
+      "highlightColor": "#3A86FF"
+    },
+    {
+      "id": "toe-3-phalanges",
+      "name": "Third Toe Phalanges (Middle Toe Bones)",
+      "function": "Your middle toe also has three small bones in a row. They grip the ground lightly as you walk and help share the load across the front of your foot. These bones are small, but losing their grip changes how steady you feel on your feet.",
+      "commonInjuries": [
+        "Broken toe from a knock or a stub",
+        "Hammer toe, where the toe stays curled and rubs against the shoe",
+        "Hard corns from the toe pressing against footwear"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [555, 190],
+          [655, 185],
+          [665, 290],
+          [650, 420],
+          [660, 520],
+          [655, 635],
+          [580, 645],
+          [545, 580],
+          [540, 420],
+          [545, 290]
+        ]
+      },
+      "meshId": "Toe_3_Phalanges",
+      "highlightColor": "#B5E48C"
+    },
+    {
+      "id": "toe-4-phalanges",
+      "name": "Fourth Toe Phalanges (Fourth Toe Bones)",
+      "function": "Your fourth toe is built from three small bones that get shorter towards the tip. They help the outer side of your foot hold steady and share pressure with the toes on either side. The joints between them let the toe flex as your foot rolls forward in a step.",
+      "commonInjuries": [
+        "Broken toe, often from catching it on furniture",
+        "Claw toe, where the toe curls down and the tip presses into the floor",
+        "A toe that starts to overlap or sit under its neighbour"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [680, 280],
+          [775, 275],
+          [785, 380],
+          [770, 500],
+          [780, 590],
+          [775, 690],
+          [705, 695],
+          [675, 630],
+          [670, 470],
+          [672, 350]
+        ]
+      },
+      "meshId": "Toe_4_Phalanges",
+      "highlightColor": "#FF99C8"
+    },
+    {
+      "id": "toe-5-phalanges",
+      "name": "Fifth Toe Phalanges (Little Toe Bones)",
+      "function": "Your little toe has three bones, and they are the smallest in the whole foot. They sit on the outer edge, so they help you feel where the ground is and keep you balanced from side to side. Being on the outside also means they rub against shoes more than the other toes.",
+      "commonInjuries": [
+        "Broken little toe from knocking it against something",
+        "Bunionette, a tender bump on the outer side of the little toe joint",
+        "Hard corns and thick skin from shoe pressure"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [825, 465],
+          [925, 460],
+          [935, 560],
+          [920, 660],
+          [930, 740],
+          [920, 840],
+          [855, 845],
+          [825, 780],
+          [818, 620],
+          [820, 520]
+        ]
+      },
+      "meshId": "Toe_5_Phalanges",
+      "highlightColor": "#52B788"
+    },
+    {
+      "id": "medial-cuneiform",
+      "name": "Medial Cuneiform (Inner Wedge Bone)",
+      "function": "This is the largest of three wedge-shaped bones in the middle of your foot, and it sits on the inner side near the arch. It links the boat-shaped bone behind it to the big toe's long bone in front. Its wedge shape helps hold up the arch on the inside of your foot.",
+      "commonInjuries": [
+        "Midfoot arthritis that makes the top of the arch ache",
+        "Lisfranc injury, a sprain or break where the midfoot meets the long toe bones",
+        "Stress injury from a sudden jump in training"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [200, 1300],
+          [330, 1290],
+          [425, 1340],
+          [430, 1470],
+          [380, 1555],
+          [260, 1560],
+          [200, 1480],
+          [190, 1380]
+        ]
+      },
+      "meshId": "Medial_Cuneiform",
+      "highlightColor": "#E07A5F"
+    },
+    {
+      "id": "intermediate-cuneiform",
+      "name": "Intermediate Cuneiform (Middle Wedge Bone)",
+      "function": "This is the smallest of the three wedge bones, tucked between its two neighbours in the middle of your foot. It sits slightly back from the others, forming a notch that locks the second long toe bone firmly in place. That locked fit is a big part of why the middle of your foot stays stiff and stable when you walk.",
+      "commonInjuries": [
+        "Lisfranc injury, where the midfoot joints are sprained or shifted",
+        "Midfoot arthritis causing a deep ache across the top of the foot",
+        "Stress fracture, which is uncommon here but can happen"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [425, 1335],
+          [545, 1345],
+          [555, 1450],
+          [540, 1535],
+          [440, 1545],
+          [420, 1460]
+        ]
+      },
+      "meshId": "Intermediate_Cuneiform",
+      "highlightColor": "#81B29A"
+    },
+    {
+      "id": "lateral-cuneiform",
+      "name": "Lateral Cuneiform (Outer Wedge Bone)",
+      "function": "This wedge bone sits on the outer side of the three, between the middle wedge bone and the box-shaped bone next to it. It connects the arch of your foot to the third long toe bone. It helps pass your weight from the middle of your foot forward to the ball of your foot.",
+      "commonInjuries": [
+        "Lisfranc injury affecting the joints at the front of this bone",
+        "Midfoot arthritis from old injuries or general wear",
+        "Stress fracture from heavy repeated loading"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [550, 1350],
+          [680, 1365],
+          [700, 1470],
+          [685, 1560],
+          [570, 1555],
+          [545, 1460]
+        ]
+      },
+      "meshId": "Lateral_Cuneiform",
+      "highlightColor": "#F2CC8F"
+    },
+    {
+      "id": "cuboid",
+      "name": "Cuboid (Outer Midfoot Box Bone)",
+      "function": "This roughly box-shaped bone sits on the outer side of the middle of your foot, between the heel bone and the two outer long toe bones. It acts as a bridge that carries weight along the outside edge of your foot. A groove on its underside guides a tendon that helps support your arch.",
+      "commonInjuries": [
+        "Cuboid syndrome, where the bone shifts slightly and causes outer foot pain",
+        "Stress fracture from repeated pounding",
+        "A crush-type break when the foot is twisted hard outward"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [625, 1390],
+          [780, 1380],
+          [850, 1450],
+          [845, 1570],
+          [780, 1640],
+          [670, 1630],
+          [620, 1540]
+        ]
+      },
+      "meshId": "Cuboid",
+      "highlightColor": "#D62828"
+    },
+    {
+      "id": "navicular",
+      "name": "Navicular (Boat-Shaped Arch Bone)",
+      "function": "This bone is shaped a bit like a small boat and sits at the top of your arch, between the ankle bone and the three wedge bones. It is the keystone of the arch, so it holds the whole curve of your foot together. A strong tendon attaches to its inner side and pulls up on the arch when you walk.",
+      "commonInjuries": [
+        "Navicular stress fracture, which is slow to heal and common in runners",
+        "Accessory navicular syndrome, where an extra piece of bone rubs and hurts",
+        "Köhler disease, a temporary softening of this bone seen in children"
+      ],
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [185, 1560],
+          [330, 1555],
+          [470, 1570],
+          [520, 1650],
+          [480, 1760],
+          [330, 1780],
+          [215, 1740],
+          [180, 1650]
+        ]
+      },
+      "meshId": "Navicular",
+      "highlightColor": "#457B9D"
+    },
+    {
+      "id": "talus",
+      "name": "Talus (Ankle Bone)",
+      "function": "This bone sits on top of your heel bone and slots into the end of your two lower leg bones to form the ankle joint. Every bit of weight you put on your foot passes through it on the way down from your leg. It is unusual because no muscles attach to it, and its blood supply is easily disturbed.",
+      "commonInjuries": [
+        "Talus fracture, usually from a hard fall or a car accident",
+        "A dent or soft patch in the cartilage and bone on its upper surface",
+        "Loss of blood supply to the bone after a serious injury"
+      ],
+      "xrayNote": "On this view the X-ray beam travels straight down through the top of the foot, so the ankle bone lies behind the long toe bones and partly overlaps the heel bone. Its outline here is approximate and is really a guide to where the bone sits, not a clear picture of its shape. A side-on (lateral) X-ray is the right view for judging this bone properly.",
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [175, 1710],
+          [360, 1700],
+          [520, 1760],
+          [570, 1880],
+          [545, 2010],
+          [420, 2080],
+          [260, 2060],
+          [180, 1950],
+          [165, 1820]
+        ]
+      },
+      "meshId": "Talus",
+      "highlightColor": "#C77DFF"
+    },
+    {
+      "id": "calcaneus",
+      "name": "Calcaneus (Heel Bone)",
+      "function": "This is the biggest bone in your foot, and it forms your heel. It takes the first hit each time your foot lands and then works as a lever to push you forward. Your Achilles tendon attaches to the back of it, linking your calf muscles to your foot.",
+      "commonInjuries": [
+        "Heel bone fracture, most often from falling or jumping from a height",
+        "Heel pain from plantar fasciitis, sometimes with a bony spur underneath",
+        "Achilles tendon trouble where the tendon joins the back of the heel"
+      ],
+      "xrayNote": "This view looks down through the foot from above, so the heel bone is stacked underneath the ankle bone and sits behind the midfoot. What you see here is a rough footprint of the bone rather than its true shape, since much of it is hidden under other bones. A side-on (lateral) X-ray shows the heel bone clearly and is the view used to assess it.",
+      "xrayRegion": {
+        "type": "polygon",
+        "coordinates": [
+          [160, 2060],
+          [400, 2050],
+          [620, 2100],
+          [700, 2200],
+          [690, 2360],
+          [560, 2425],
+          [300, 2420],
+          [175, 2330],
+          [150, 2180]
+        ]
+      },
+      "meshId": "Calcaneus",
+      "highlightColor": "#2EC4B6"
+    }
+  ]
+}

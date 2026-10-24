@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+dist
+build
+coverage
+
+# Cache
+.cache
+.parcel-cache
+.next
+.nuxt
+.vuepress/dist
+
+# Config files that should maintain specific formatting
+*.config.js
+*.config.ts
+
+# Generated files
+*.min.js
+*.min.css
+
+# Other
+.git
+.env
+.env.local
+.DS_Store
