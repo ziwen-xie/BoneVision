@@ -17,22 +17,47 @@
  * that promised a shareable URL could not carry the mode, since the mode lives
  * in the store and not in the fragment.
  *
- * A third entry point sits in the coverage section: BodyRegionPicker, mounted
- * as the proof behind the coverage claim. Selecting the feet loads the bone map
- * and lands in the viewer - see `openRegionInViewer` for why that path has to
- * settle the mode as well, and the comment above the picker for why it is on a
- * white full-width surface rather than inside the tinted two-column grid.
- *
  * Nothing is fetched by rendering this page. The demo radiograph is 836KB, so
- * it waits for a call to action; the picker likewise fetches only inside its
- * click handler, so mounting it did not cost that property. There is a test
- * holding both halves of this still.
+ * it waits for a call to action. There is a test holding that still, and it
+ * clicks through afterwards so the absence cannot pass for a dead spy.
+ *
+ * The roadmap section
+ * -------------------
+ * "What's next" describes work that does not exist, on a page about a health
+ * tool, which makes its tense the load-bearing part. Each entry is stage
+ * labelled, the lead-in says outright that neither is built, and the second
+ * entry - marking what looks unusual on an image - carries the caveat that
+ * software doing that is a regulated medical device needing clinical
+ * validation. The footer still reads "not a medical device", and this section
+ * has to leave that sentence true for a visitor who skims it.
  *
  * Layout
  * ------
  * Single column by default, fanning out at `md` (768px) per requirement 8.1/8.2.
  * Type scale steps up at `sm`/`lg` so the hero does not overflow a 320px
  * viewport, which `body { min-width: 320px }` sets as the floor.
+ *
+ * Figures
+ * -------
+ * Two photographic frames, both derived from the CC0 radiograph the demo
+ * itself loads and both in the hero: the forefoot crop, and the whole foot
+ * beside it. They are content, not decoration - a visitor deciding whether
+ * this tool is for them wants to see the kind of image it reads - so each has
+ * descriptive alt text and none of them is `aria-hidden`. No illustration is
+ * authored by hand here; a drawn approximation of a radiograph would be both
+ * uglier and less honest than the real thing.
+ *
+ * Their `src` goes through `import.meta.env.BASE_URL` rather than a leading
+ * slash. Pages serves this app from `/BoneVision/`, so `/landing/x.webp` is a
+ * 404 there while resolving fine in dev - the failure only shows up after
+ * deploy, which it has done once already on this project.
+ *
+ * `width`/`height` are set on both so the browser reserves the right box before
+ * the bytes land; the Tailwind `h-auto w-full` keeps that box responsive
+ * instead of pinning it to the intrinsic size. Neither is `loading="lazy"`:
+ * both sit above the fold now, and deferring an image the page opens on buys
+ * nothing. `decoding="async"` stays on both, since WebP decoded off the main
+ * thread cannot hold up the headline.
  *
  * Contrast
  * --------
@@ -60,27 +85,18 @@
  *   primary-800 on primary-50 .......... 13.37:1   inverted CTA on hover
  *   primary-600 on white ................ 6.75:1   footer link on hover
  *   success-800 on success-50 ........... 7.29:1   privacy card
- *   accent-800 on accent-50 ............. 8.15:1   coverage callout
- *   secondary-900 on secondary-50 ....... 8.87:1   scope callout heading
- *   secondary-800 on secondary-50 ....... 7.09:1   scope callout body
+ *   accent-800 on accent-50 ............. 8.15:1   capability icon
+ *   secondary-900 on secondary-50 ....... 8.87:1   capability icon
+ *   secondary-800 on secondary-50 ....... 7.09:1   roadmap caveat callout
  * neutral-500 (4.74:1 on white) is avoided throughout: it clears AA only just,
  * and not at all once a tint sits under it. Body text stops at neutral-600.
  *
- * The region picker's card is white, which is the surface its own contrast
- * table was computed against, so the ratios in BodyRegionPicker hold as
- * published rather than needing to be recomputed for a tint.
- *
- * _Requirements: 9.1, 9.4, 9.5, 7.6, 1.1, 1.7, 6.5, 15.4, 8.1, 8.2, 8.7, 13.1,
+ * _Requirements: 9.1, 9.4, 9.5, 7.6, 1.1, 6.5, 15.4, 8.1, 8.2, 8.7, 13.1,
  * 13.2, 13.3, 13.4_
- *
- * 1.7 is here because selecting the feet loads the foot bone map; 1.6, the
- * prompt to name the body part, stays with BodyPartSelector in the upload flow,
- * which this picker does not replace.
  */
 
 import useBoneVisionStore from '../stores/useBoneVisionStore';
 import { navigateToRoute } from '../hooks/useHashRoute';
-import BodyRegionPicker from './BodyRegionPicker';
 import BoneMark from './BoneMark';
 
 /**
@@ -124,26 +140,26 @@ const ICON = {
 
 const CAPABILITIES = [
   {
-    title: 'Highlighting that runs both ways',
-    body: 'Hover a bone on the radiograph and it lights up on the 3D model, in the same colour. Hover the model and the region on the X-ray lights up. Click, and the model turns to face it.',
+    title: 'Hover one side, both light up',
+    body: 'Point at a bone on the radiograph and the matching bone on the 3D model takes the same colour. It works model-to-image as well. Click, and the model turns to face what you picked.',
     icon: ICON.sync,
     iconClass: 'bg-primary-50 text-primary-700',
   },
   {
-    title: 'Explanations without the jargon',
-    body: 'What each bone does, what commonly goes wrong with it, and how clearly it reads on this kind of X-ray. Written for someone with no medical background.',
+    title: 'What each bone is for',
+    body: 'Each region comes with a short write-up of what the bone does and the injuries it tends to collect. The language assumes no medical training.',
     icon: ICON.speech,
     iconClass: 'bg-secondary-50 text-secondary-900',
   },
   {
-    title: 'Private by design',
-    body: 'Your image is read and drawn entirely inside your browser. Never uploaded to a server, never written to storage, gone the moment you close the tab.',
+    title: 'Your image stays with you',
+    body: 'Your file is decoded and drawn inside the browser, and it never leaves. Close the tab and it is gone.',
     icon: ICON.shield,
     iconClass: 'bg-success-50 text-success-800',
   },
   {
-    title: '19 bones, individually explorable',
-    body: 'The demo radiograph is traced bone by bone: every tarsal, metatarsal and phalanx is its own region with its own explanation, not one flat overlay.',
+    title: 'Bones individually explorable',
+    body: 'The demo radiograph is traced region by region - 19 of them, reaching from the heel bone to the tip of the big toe. Each has its own outline and its own entry in the panel.',
     icon: ICON.bones,
     iconClass: 'bg-accent-50 text-accent-800',
   },
@@ -169,18 +185,48 @@ const STEPS = [
   },
 ];
 
+/**
+ * Three audiences, deliberately written to three different shapes: a second
+ * person opener, a subject-first one, and a short closer. They used to run to
+ * the same two-sentence template, which read like filled-in boilerplate once
+ * you saw all three in a row.
+ */
 const AUDIENCES = [
   {
     title: 'Patients',
-    body: 'You have had an X-ray and the explanation went by too fast. Start from the image in front of you and work out what you are actually looking at.',
+    body: 'You came home with a grey picture and the name of a bone you half remember. Find it on the image, then look at what sits around it.',
   },
   {
     title: 'Students',
-    body: 'Learning radiographic anatomy means holding a 2D projection and a 3D structure in mind at the same time. Here they are side by side, linked.',
+    body: 'Radiographic anatomy asks you to hold a flat projection and a solid shape in mind at once. Seeing the two linked on screen does some of that work for you.',
   },
   {
     title: 'Clinicians',
-    body: 'Explaining a finding takes minutes you do not have. Point at the bone on the film and let the 3D view carry the spatial half of the explanation.',
+    body: 'An explanation you can point at goes faster. Show the bone on the film and let the model carry the spatial half.',
+  },
+];
+
+/**
+ * Roadmap, and labelled as one everywhere it is rendered. Neither entry is
+ * implemented, so each carries its own stage word and the copy stays out of the
+ * present tense - a visitor who skims this section must not come away thinking
+ * the tool already inspects an image. The second entry is the regulated one:
+ * software that marks findings on a radiograph is a medical device, which is
+ * what the caveat under the grid exists to say before anyone assumes otherwise.
+ *
+ * Two entries, not three. The page has enough trios on it already, and padding
+ * a roadmap to fill a row is how a plan turns into a promise.
+ */
+const ROADMAP = [
+  {
+    stage: 'Planned',
+    title: 'Train on real biological data',
+    body: 'Every bone region in the demo is a polygon traced by hand against one specific radiograph, which is the reason a single foot is all that is mapped. The aim is to learn that mapping from real annotated imaging, so bones on an uploaded X-ray could be located automatically rather than waiting on a hand-authored outline set for each image.',
+  },
+  {
+    stage: 'Further out',
+    title: 'Point out the parts of an X-ray that look unusual',
+    body: 'Past naming anatomy: marking areas of an image that depart from typical bone structure, with a plain-language note on what that sort of finding generally indicates. Nothing on your image is assessed today, and no version of this would hand back a diagnosis.',
   },
 ];
 
@@ -206,34 +252,6 @@ export default function LandingPage() {
    */
   const openUpload = () => {
     setMode('upload');
-    navigateToRoute('viewer');
-  };
-
-  /**
-   * Third entry point: the coverage silhouette. The picker has already loaded
-   * the bone map through the store's `setBodyPart` by the time this fires, so
-   * there is nothing to load here - only a mode to settle before navigating.
-   *
-   * It has to be settled, because the viewer's mount effect only auto-loads the
-   * demo while `mode === 'demo'`. A visitor who clicked "Upload your X-ray"
-   * earlier and came back to this page leaves the store in upload mode, and
-   * navigating in that state would open the drop zone - the map the user just
-   * picked would be invisible, having been chosen and then not shown.
-   *
-   * `setMode('demo')` is the fix and not `setMode('upload')`: upload mode runs
-   * `prepareUpload`, which clears `bodyPart` and `mappingConfig` and would
-   * therefore throw away the load that just happened. Demo mode is also the
-   * only state in which the split view has a radiograph to draw the map on.
-   *
-   * In the common case - a first visit, where `mode` is already `'demo'` - this
-   * is a documented no-op, and the viewer's mount effect does the fetching as
-   * it always has. Coming from upload mode it starts `initializeDemo` here
-   * instead; that sets `mode` synchronously before its first await, so the
-   * mount effect finds demo mode a moment later and `initializeDemo` collapses
-   * the second call into the in-flight one rather than fetching twice.
-   */
-  const openRegionInViewer = () => {
-    setMode('demo');
     navigateToRoute('viewer');
   };
 
@@ -273,47 +291,87 @@ export default function LandingPage() {
           className="bg-gradient-to-b from-primary-50 via-white to-white"
         >
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
-            <div className="animate-fade-in max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary-700 sm:text-sm">
-                Educational X-ray reader
-              </p>
-              <h1
-                id="hero-heading"
-                className="font-display mt-4 text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-[1.1]"
-              >
-                Understand what your X-ray is showing you
-              </h1>
-              <p className="mt-5 text-lg leading-relaxed text-neutral-800 sm:text-xl">
-                BoneVision puts a radiograph next to an interactive 3D skeleton
-                and keeps the two in step.
-              </p>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-700">
-                Hover a bone on the image, watch it light up on the model, and
-                read in plain language what it does. No anatomy background
-                needed.
-              </p>
+            {/*
+              Copy left, radiographs right from `md` up; stacked below that,
+              with the images second so a phone still opens on the headline. The
+              columns are 3fr/2fr because the frames only need enough room to
+              read as radiographs, and the headline wants more than half the
+              width.
+            */}
+            <div className="grid items-center gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-12 lg:gap-14">
+              <div className="animate-fade-in max-w-3xl">
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary-700 sm:text-sm">
+                  Educational X-ray reader
+                </p>
+                <h1
+                  id="hero-heading"
+                  className="font-display mt-4 text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-[1.1]"
+                >
+                  Understand what your X-ray is showing you
+                </h1>
+                <p className="mt-5 text-lg leading-relaxed text-neutral-800 sm:text-xl">
+                  BoneVision puts a radiograph next to an interactive 3D
+                  skeleton and keeps the two in step.
+                </p>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-700">
+                  Hover a bone on the image and the same bone lights up on the
+                  model, with a plain-language note on what it does.
+                </p>
 
-              {/* Stacked and full-width on phones; side by side from `sm` up. */}
-              <div className="animate-slide-up mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                <button
-                  type="button"
-                  onClick={openDemo}
-                  className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-medical-lg transition-colors duration-150 hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
-                >
-                  Try the demo
-                </button>
-                <button
-                  type="button"
-                  onClick={openUpload}
-                  className="inline-flex items-center justify-center rounded-lg border border-primary-200 bg-white px-6 py-3.5 text-base font-semibold text-primary-700 shadow-medical transition-colors duration-150 hover:border-primary-300 hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
-                >
-                  Upload your X-ray
-                </button>
+                {/* Stacked and full-width on phones; side by side from `sm` up. */}
+                <div className="animate-slide-up mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                  <button
+                    type="button"
+                    onClick={openDemo}
+                    className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-medical-lg transition-colors duration-150 hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
+                  >
+                    Try the demo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={openUpload}
+                    className="inline-flex items-center justify-center rounded-lg border border-primary-200 bg-white px-6 py-3.5 text-base font-semibold text-primary-700 shadow-medical transition-colors duration-150 hover:border-primary-300 hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
+                  >
+                    Upload your X-ray
+                  </button>
+                </div>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-                No account, no install, nothing leaves your browser. The demo is
-                a real foot radiograph with 19 bones mapped.
-              </p>
+
+              {/*
+                Both frames above the fold, so neither takes `loading="lazy"`:
+                deferring the images the page opens on would hand the visitor an
+                empty panel for a beat. `decoding="async"` is still worth
+                having, since WebP decoded off the main thread cannot delay the
+                headline.
+
+                Side by side rather than stacked, and the whole foot narrower
+                than the forefoot crop: at 393x900 against 646x700 the two end
+                up close to the same rendered height that way, instead of one
+                frame towering over the other. They share one row so the pair
+                reads as a single figure beside the copy.
+              */}
+              <div className="animate-fade-in mx-auto flex w-full max-w-sm items-start gap-3 md:mx-0 md:max-w-none">
+                <div className="min-w-0 flex-1 rounded-2xl border border-neutral-200 bg-xray-dark p-3 shadow-medical-lg">
+                  <img
+                    src={`${import.meta.env.BASE_URL}landing/xray-forefoot.webp`}
+                    alt="Radiograph of the front half of a right foot, seen from above: the five long metatarsal bones fan out from the midfoot towards the toe joints."
+                    width={646}
+                    height={700}
+                    decoding="async"
+                    className="h-auto w-full rounded-xl"
+                  />
+                </div>
+                <div className="w-[32%] flex-none rounded-2xl border border-neutral-200 bg-xray-dark p-3 shadow-medical-lg">
+                  <img
+                    src={`${import.meta.env.BASE_URL}landing/xray-hero.webp`}
+                    alt="Radiograph of a whole normal right foot, seen from above: toe bones along the top, the long metatarsals through the middle, and the heel bone at the bottom."
+                    width={393}
+                    height={900}
+                    decoding="async"
+                    className="h-auto w-full rounded-xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -328,11 +386,11 @@ export default function LandingPage() {
               id="capabilities-heading"
               className="font-display text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl"
             >
-              What it actually does
+              What is BoneVision
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-700">
-              Four things, done properly, rather than a long list done
-              approximately.
+              An educational X-ray reader that runs entirely in the browser,
+              built around one fully mapped radiograph.
             </p>
 
             <ul className="mt-10 grid gap-6 md:grid-cols-2">
@@ -433,126 +491,55 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* --------------------------------------------------- Scope and coverage */}
+        {/* ------------------------------------------------------------- Roadmap */}
         <section
-          aria-labelledby="scope-heading"
+          aria-labelledby="roadmap-heading"
           className="border-t border-neutral-200 bg-white"
         >
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <h2
-              id="scope-heading"
+              id="roadmap-heading"
               className="font-display text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl"
             >
-              What it is, and what it is not
+              What&rsquo;s next
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-700">
-              Both of these matter more than the feature list, so they are here
-              and not in the small print.
+              Neither item below is built. What BoneVision does today is label
+              anatomy on one hand-traced radiograph and explain what each bone
+              is for, and that is the whole of it - the rest of this section is
+              where the work is headed.
             </p>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {/*
-                Coverage. One mapped radiograph is the honest number, and saying
-                so up front is cheaper than a visitor discovering it after
-                uploading a chest film.
-
-                This card used to carry the extent of the coverage in prose too
-                - that the foot is the only mapped body part, and that the
-                body-part step admits it. The silhouette below now shows exactly
-                that, labelled region by region, so the sentence came out rather
-                than standing two blocks away from a picture of the same fact.
-                What is left here is what the picker does not say: which
-                radiograph the demo actually is, and how finely it is traced.
-              */}
-              <section
-                aria-labelledby="coverage-heading"
-                className="rounded-xl border border-accent-200 bg-accent-50 p-6 sm:p-7"
-              >
-                <h3
-                  id="coverage-heading"
-                  className="font-display text-lg font-semibold leading-snug text-accent-800"
+            <ul className="mt-10 grid gap-6 md:grid-cols-2">
+              {ROADMAP.map((item) => (
+                <li
+                  key={item.title}
+                  className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-7"
                 >
-                  Mapped so far: one foot
-                </h3>
-                <p className="mt-2 text-base leading-relaxed text-accent-800">
-                  The demo is a normal right foot in dorsoplantar projection,
-                  with 19 bones traced individually against the image. The
-                  silhouette below shows how much of the body that covers.
-                </p>
-              </section>
-
-              {/*
-                Scope statement. Wording deliberately tracks the standing
-                disclaimer in EducationalPanel so a visitor meets the same
-                boundary twice, phrased the same way, rather than a softer
-                version in marketing and a firmer one in the product.
-              */}
-              <section
-                aria-labelledby="disclaimer-heading"
-                className="rounded-xl border border-secondary-200 bg-secondary-50 p-6 sm:p-7"
-              >
-                <h3
-                  id="disclaimer-heading"
-                  className="font-display text-lg font-semibold leading-snug text-secondary-900"
-                >
-                  A learning tool, not a diagnosis
-                </h3>
-                <p className="mt-2 text-base leading-relaxed text-secondary-800">
-                  BoneVision describes healthy anatomy in general. It does not
-                  read your image, does not look for fractures, and says nothing
-                  about your own health. If you have questions about an X-ray, an
-                  injury, or symptoms, talk them through with your doctor or
-                  another clinician.
-                </p>
-              </section>
-            </div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-neutral-600">
+                    {item.stage}
+                  </p>
+                  <h3 className="font-display mt-2 text-lg font-semibold leading-snug text-neutral-900">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-base leading-relaxed text-neutral-800">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
 
             {/*
-              The coverage claim, shown instead of asserted. Nine labelled
-              regions with one of them live is a far more honest answer to "does
-              this cover my X-ray?" than a sentence claiming the same thing, and
-              it doubles as a third way into the viewer.
-
-              Deliberately outside the two-column grid above, for width. The
-              picker's SVG is `max-w-[18rem]` and self-centering, and its
-              caption needs room beside it, so it asked for at least 20rem of
-              column. A cell of that `md:grid-cols-2` grid gives 18.25rem at the
-              768px breakpoint (720px of content, less the 24px gap, halved,
-              less 56px of card padding), which is under the floor. Full width
-              gives 41.5rem there, and the inner wrapper below caps the picker
-              at 28rem so a 1152px viewport does not leave it floating in a
-              near-empty band. The cap only binds above 400px; narrower than
-              that the SVG scales down on its own `w-full`.
-
-              White surface, also deliberately. The picker's contrast table is
-              computed against white, and its focus ring is a white halo under a
-              dark stroke - on a dark band the halo vanishes into the backdrop
-              and the indicator loses the one stroke carrying it over the
-              region's own dark fill. So: `bg-white`, not the `primary-800` of
-              the band below, and not the tinted `accent-50` of the coverage
-              card it belongs with.
+              The caveat sits outside the grid on purpose: it qualifies the
+              second card, and a visitor who reads only the headings should
+              still hit it on the way to the closing band.
             */}
-            <section
-              aria-labelledby="map-reach-heading"
-              className="mt-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-medical sm:p-7"
-            >
-              <h3
-                id="map-reach-heading"
-                className="font-display text-lg font-semibold leading-snug text-neutral-900"
-              >
-                Where the map reaches today
-              </h3>
-              <p className="mt-2 max-w-2xl text-base leading-relaxed text-neutral-800">
-                The silhouette shows which parts of the body are mapped today
-                and which are still to come. Pick the feet to load their bone
-                map and go straight to the viewer.
-              </p>
-
-              <BodyRegionPicker
-                onRegionSelected={openRegionInViewer}
-                className="mx-auto mt-8 w-full max-w-md"
-              />
-            </section>
+            <p className="mt-6 rounded-xl border border-secondary-200 bg-secondary-50 p-5 text-base leading-relaxed text-secondary-800 sm:p-6">
+              The second one is the difficult half, and worth saying plainly:
+              software that flags findings on a medical image is a regulated
+              medical device, so it would need clinical validation and review
+              long before anyone should rely on what it says.
+            </p>
           </div>
         </section>
 
@@ -566,7 +553,7 @@ export default function LandingPage() {
               Have a look at the demo
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-primary-100">
-              It opens on a real radiograph with every bone already mapped, so
+              It opens on a real radiograph with the bone map already loaded, so
               there is nothing to set up. Bring your own image whenever you are
               ready.
             </p>
@@ -598,10 +585,18 @@ export default function LandingPage() {
               BoneVision
             </p>
           </div>
+          {/*
+            The credit has to cover the two radiographs on this page as well as
+            the one inside the demo, since both are resized and cropped
+            derivatives of the same CC0 original. CC0 asks for nothing, but a
+            health-adjacent page that shows someone else's radiograph without
+            saying whose is a bad look regardless of the licence.
+          */}
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-neutral-600">
             Educational use only, and not a medical device. Images are processed
-            in your browser and are not transmitted anywhere. The sample
-            radiograph is &ldquo;X-ray of normal right foot by dorsoplantar
+            in your browser and are not transmitted anywhere. The radiographs
+            shown here, and the one loaded by the demo, are resized or cropped
+            versions of &ldquo;X-ray of normal right foot by dorsoplantar
             projection&rdquo; by Mikael Häggström, public domain under CC0 1.0
             via{' '}
             <a

@@ -1,31 +1,24 @@
 /**
  * Tests for the landing page.
  *
- * Four things are worth holding still here: the calls to action must put the
+ * Five things are worth holding still here: the calls to action must put the
  * store in the right mode *and* navigate (getting one without the other drops
  * the user on the wrong screen), the document outline must stay navigable for
  * assistive tech, no bandwidth may be spent before the user asks for the
- * viewer, and the mounted region picker must keep the surface its own contrast
- * and layout work assumed.
+ * viewer, the roadmap section must keep reading as unbuilt work, and the two
+ * radiographs must stay announced, sized and resolved through the deploy base.
  *
- * The picker's regions are roled `<g>` elements, so they are driven with
- * `fireEvent` rather than `userEvent` for the same reason BodyRegionPicker's
- * own tests do: jsdom's pointer and focus emulation for SVG nodes is thinner
- * than for HTML, and dispatching directly keeps the test about the component.
+ * Copy assertions are deliberately loose. The page's wording is reviewed by
+ * hand and rewritten often, so these tests pin the claims that must not quietly
+ * disappear - the educational-only scope, the privacy guarantee, the future
+ * tense on the roadmap - rather than the sentences carrying them.
  */
 
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import LandingPage from './LandingPage';
 import useBoneVisionStore from '../stores/useBoneVisionStore';
-
-/** Minimal payload shaped like `public/config/foot-mapping.json`. */
-const MAPPING_PAYLOAD = {
-  bodyPart: 'foot',
-  xrayDimensions: { width: 800, height: 600 },
-  bones: [],
-};
 
 /**
  * The store's actions survive `reset()`, which only clears data fields, so a
@@ -49,18 +42,6 @@ function firstButton(name: RegExp): HTMLElement {
   }
 
   return match;
-}
-
-/** The only request the landing page can make: the picker's bone map. */
-function stubMappingFetch() {
-  const fetchMock = vi.fn().mockResolvedValue({
-    ok: true,
-    json: async () => MAPPING_PAYLOAD,
-  });
-
-  vi.stubGlobal('fetch', fetchMock);
-
-  return fetchMock;
 }
 
 beforeEach(() => {
@@ -95,6 +76,15 @@ describe('LandingPage', () => {
     ).map((heading) => Number(heading.tagName.slice(1)));
 
     expect(levels.length).toBeGreaterThan(1);
+
+    /*
+      The walk below is only a real test of the outline if the outline actually
+      nests - a page of an h1 and a row of h2s would satisfy it for the wrong
+      reason. Removing the scope section took an h2 with h3 children out of the
+      document and the roadmap section puts one back, so the third level has to
+      still be reachable, and reachable without a jump.
+    */
+    expect(levels).toContain(3);
 
     let previous = 0;
 
@@ -164,11 +154,22 @@ describe('LandingPage', () => {
     expect(window.location.hash).toBe('#/viewer');
   });
 
-  it('loads nothing until the user asks for the viewer', () => {
+  it('loads nothing until the user asks for the viewer', async () => {
+    const user = userEvent.setup();
     const initializeDemo = vi.fn().mockResolvedValue(undefined);
     const fetchSpy = vi.fn();
     useBoneVisionStore.setState({ initializeDemo });
     vi.stubGlobal('fetch', fetchSpy);
+
+    /*
+      Upload mode, which is where a visitor who clicked "Upload your X-ray" and
+      came back leaves the store. It is the state with the strongest pull
+      towards an eager reload - the demo content has been cleared and the page
+      is advertising it again - and it is the only state in which the click
+      below has observable work to do, since `setMode('demo')` in demo mode is
+      a deliberate no-op.
+    */
+    useBoneVisionStore.getState().prepareUpload();
 
     render(<LandingPage />);
 
@@ -177,14 +178,16 @@ describe('LandingPage', () => {
     expect(initializeDemo).not.toHaveBeenCalled();
     expect(fetchSpy).not.toHaveBeenCalled();
 
-    // Mounting the region picker did not cost that. Its silhouette is path data
-    // from a module constant and it reaches for the bone map only inside its
-    // activation handler, so rendering it is free - asserted with the picker
-    // demonstrably on screen, so this cannot pass by the picker being absent.
-    expect(
-      screen.getByRole('group', { name: /regions available/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /feet/i })).toBeInTheDocument();
+    /*
+      And not because there is nothing here that could have loaded: the same
+      render wires a control that does exactly that load, on demand. Clicking
+      it drives the spies the two assertions above lean on, so their silence is
+      the page deferring the work rather than a mock that was never live. This
+      mattered when the page mounted the region picker and still matters now
+      that the only network-capable code left is behind these buttons.
+    */
+    await user.click(firstButton(/try the demo/i));
+    expect(initializeDemo).toHaveBeenCalledTimes(1);
   });
 
   it('gives every action a real control and a visible focus ring', async () => {
@@ -197,30 +200,18 @@ describe('LandingPage', () => {
     ];
 
     /*
-      Two populations now. The page's own actions are HTML buttons and anchors,
-      each carrying a Tailwind focus ring. The picker contributes roled <g>
-      elements, which can take neither: an SVG path has no CSS outline and
-      `focus-visible:ring-*` has nothing to paint on it, which is exactly why
-      that component draws its ring as real geometry instead. Holding them to a
-      class that could not apply would test the wrong thing, so they are
-      partitioned and checked for what does apply to them.
+      One population: every action on this page is an HTML button or anchor, so
+      every one of them can carry a Tailwind focus ring and is held to it. The
+      tag check is the part that keeps that true - a control painted on
+      something else, an SVG node for instance, takes no CSS outline and has
+      nothing for `focus-visible:ring-*` to apply to, so it would need its own
+      indicator and would fail here rather than slipping through unchecked.
     */
-    const htmlControls = controls.filter((node) =>
-      ['BUTTON', 'A'].includes(node.tagName)
-    );
-    const svgControls = controls.filter((node) => node.tagName === 'g');
+    expect(controls.length).toBeGreaterThan(0);
 
-    expect(htmlControls.length).toBeGreaterThan(0);
-    // No third kind: every control is accounted for by one of the two rules.
-    expect(htmlControls.length + svgControls.length).toBe(controls.length);
-
-    for (const control of htmlControls) {
+    for (const control of controls) {
+      expect(['BUTTON', 'A']).toContain(control.tagName);
       expect(control.className).toMatch(/focus-visible:ring-2/);
-    }
-
-    for (const control of svgControls) {
-      expect(control.closest('svg[role="group"]')).not.toBeNull();
-      expect(control).toHaveAttribute('tabindex', '0');
     }
 
     // Keyboard reach: the first Tab from the document body has to land on a
@@ -229,29 +220,79 @@ describe('LandingPage', () => {
     expect(controls).toContain(document.activeElement);
   });
 
-  it('states the coverage and the educational-only scope on the page', () => {
+  it('states the educational-only scope and the privacy guarantee', () => {
     render(<LandingPage />);
 
-    // Honest coverage: one mapped foot radiograph, not whole-body support.
+    /*
+      The scope boundary, asserted on substance rather than phrasing. It used to
+      have a card of its own in the middle of the page; the footer line is what
+      carries it now, and it is the sentence the roadmap section below must not
+      outgrow. Same boundary EducationalPanel's standing disclaimer draws, so a
+      visitor cannot meet a softer version here and a firmer one inside the
+      product.
+    */
     expect(
-      screen.getByRole('heading', { name: /mapped so far: one foot/i })
-    ).toBeInTheDocument();
-    // Named in the coverage card and again in the footer credit.
-    expect(
-      screen.getAllByText(/dorsoplantar projection/i).length
-    ).toBeGreaterThan(0);
-
-    // Scope statement, in the same terms the viewer's panel uses.
-    expect(
-      screen.getByRole('heading', { name: /not a diagnosis/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/talk them through with your doctor/i)
+      screen.getByText(/educational use only, and not a medical device/i)
     ).toBeInTheDocument();
 
     // The privacy guarantee is a real property of the implementation, so it is
-    // stated outright.
-    expect(screen.getByText(/never uploaded to a server/i)).toBeInTheDocument();
+    // stated outright: once in the capability card, once in the footer.
+    expect(
+      screen.getByText(/decoded and drawn inside the browser/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/processed\s+in your browser and are not transmitted/i)
+    ).toBeInTheDocument();
+
+    // Honest coverage: one traced radiograph, named for what it actually is,
+    // rather than an implied whole-body library.
+    expect(
+      screen.getByText(/traced region by region/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByText(/dorsoplantar projection/i).length
+    ).toBeGreaterThan(0);
+  });
+
+  it('shows the demo radiograph itself, as content rather than decoration', () => {
+    render(<LandingPage />);
+
+    const images = screen.getAllByRole('img', { hidden: false });
+
+    // Both frames, and both in the hero now: the forefoot crop and the whole
+    // foot beside it. A visitor deciding whether this tool reads their kind of
+    // image should be able to see one without scrolling.
+    expect(images).toHaveLength(2);
+
+    for (const image of images) {
+      // Content images, so they must be announced, and named for what they
+      // show rather than for the file they came from.
+      expect(image).not.toHaveAttribute('aria-hidden');
+      expect(image.getAttribute('alt')).toMatch(/radiograph/i);
+
+      /*
+        Pages serves this app from /BoneVision/, so a bare "/landing/..." would
+        resolve in dev and 404 in production - a failure that only appears after
+        deploy, which this project has already been bitten by once.
+        `import.meta.env.BASE_URL` is the existing fix, used by the store for
+        the demo image and the bone map, and vite.config.ts sets `base` to
+        '/BoneVision/' for tests too, so this assertion genuinely distinguishes
+        the two spellings rather than passing on a base of '/'.
+      */
+      const src = image.getAttribute('src') ?? '';
+      expect(src.startsWith(import.meta.env.BASE_URL)).toBe(true);
+      expect(src).toMatch(/landing\/xray-\w+\.webp$/);
+
+      // Intrinsic size declared, so the box is reserved before the bytes land.
+      expect(image).toHaveAttribute('width');
+      expect(image).toHaveAttribute('height');
+      expect(image).toHaveAttribute('decoding', 'async');
+
+      // Neither defers, because neither can afford to: both sit above the fold
+      // now that the below-the-fold copy of the whole-foot frame is gone, and
+      // lazy-loading an image the page opens on shows an empty panel first.
+      expect(image).not.toHaveAttribute('loading', 'lazy');
+    }
   });
 
   it('marks decorative artwork as hidden from assistive tech', () => {
@@ -260,136 +301,62 @@ describe('LandingPage', () => {
     const svgs = Array.from(document.querySelectorAll('svg'));
     expect(svgs.length).toBeGreaterThan(0);
 
+    // Every vector on the page is now a glyph or a wordmark, sitting beside
+    // text that already carries the meaning, so the rule is blanket: none of
+    // them is announced. An interactive SVG would have to be named instead and
+    // would have to come back here for its own branch.
     for (const svg of svgs) {
-      if (svg.getAttribute('role') === 'group') {
-        // The one exception, and the reason this test is a branch rather than a
-        // blanket assertion: the picker's silhouette is a set of controls, not
-        // artwork, so hiding it would hide nine buttons. It has to be named
-        // instead.
-        expect(svg).toHaveAccessibleName(/regions available/i);
-        expect(svg).not.toHaveAttribute('aria-hidden');
-      } else {
-        // Everything else is a glyph or a wordmark sitting beside text that
-        // already carries the meaning.
-        expect(svg).toHaveAttribute('aria-hidden', 'true');
-      }
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
     }
   });
 
-  it('shows the coverage with the silhouette instead of only asserting it', () => {
+  it('presents the roadmap as work that does not exist yet', () => {
     render(<LandingPage />);
 
+    // `aria-labelledby` makes it a named region, so the heading announces the
+    // section before any of its contents are read out.
+    const roadmap = screen.getByRole('region', { name: /what.s next/i });
+
+    // The two directions, and only two: a roadmap padded out to fill a row
+    // reads as a promise rather than a plan.
+    const list = within(roadmap).getByRole('list');
+    expect(within(list).getAllByRole('listitem')).toHaveLength(2);
     expect(
-      screen.getByRole('heading', { name: /where the map reaches today/i })
+      within(roadmap).getByRole('heading', {
+        name: /train on real biological data/i,
+      })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/which parts of the body are mapped today/i)
+      within(roadmap).getByRole('heading', { name: /look unusual/i })
     ).toBeInTheDocument();
-
-    // One region live, the rest visible but inert - the coverage claim made
-    // checkable rather than taken on trust.
-    expect(screen.getByRole('button', { name: /feet/i })).toHaveAccessibleName(
-      /available, select to load/i
-    );
-    expect(screen.getByRole('button', { name: /skull/i })).toHaveAttribute(
-      'aria-disabled',
-      'true'
-    );
-
-    // And the prose the picker replaced is gone: the coverage card still names
-    // the demo radiograph, but no longer states the extent of the mapping in
-    // words one block above a picture of it.
-    expect(
-      screen.getByRole('heading', { name: /mapped so far: one foot/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByText(/only body part with a bone map/i)
-    ).not.toBeInTheDocument();
-  });
-
-  it('sends the silhouette selection into the viewer with the map loaded', async () => {
-    const fetchMock = stubMappingFetch();
-
-    render(<LandingPage />);
-
-    fireEvent.click(screen.getByRole('button', { name: /feet/i }));
-
-    await waitFor(() => expect(window.location.hash).toBe('#/viewer'));
-
-    const state = useBoneVisionStore.getState();
-    expect(state.bodyPart).toBe('foot');
-    expect(state.mappingConfig).toEqual(MAPPING_PAYLOAD);
-
-    // Demo mode, so the viewer's mount effect loads a radiograph for the map to
-    // be drawn on instead of opening the drop zone.
-    expect(state.mode).toBe('demo');
-
-    // One small JSON, and specifically not the 836KB radiograph: the picker
-    // loads the bone map, the viewer loads the image once it is asked for.
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(String(fetchMock.mock.calls[0]?.[0])).toContain(
-      'config/foot-mapping.json'
-    );
-  });
-
-  it('settles the mode when the silhouette follows an upload', async () => {
-    const initializeDemo = vi.fn().mockResolvedValue(undefined);
-    stubMappingFetch();
-    useBoneVisionStore.setState({ initializeDemo });
-
-    // A visitor who clicked "Upload your X-ray" and came back leaves the store
-    // in upload mode.
-    useBoneVisionStore.getState().prepareUpload();
-
-    render(<LandingPage />);
-
-    fireEvent.click(screen.getByRole('button', { name: /feet/i }));
-
-    await waitFor(() => expect(window.location.hash).toBe('#/viewer'));
-
-    // Navigating in upload mode would skip the viewer's demo load and show the
-    // drop zone, so the map the user just picked would never appear. Switching
-    // to demo mode is what prevents that - and it has to be demo, since
-    // `prepareUpload` would clear the mapping the picker just fetched.
-    expect(initializeDemo).toHaveBeenCalledTimes(1);
-    expect(useBoneVisionStore.getState().bodyPart).toBe('foot');
-  });
-
-  it('keeps the region picker on a light surface with room to breathe', () => {
-    const { container } = render(<LandingPage />);
-
-    const svg = container.querySelector('svg[role="group"]');
-    expect(svg).not.toBeNull();
-
-    // The picker's own wrapper. `max-w-md` is 28rem, clearing the 20rem its
-    // author asked for; the SVG inside is `max-w-[18rem]` and self-centering.
-    const wrapper = svg?.parentElement;
-    expect(wrapper?.className).toMatch(/max-w-md/);
-
-    const ancestors: string[] = [];
-
-    for (let node = wrapper?.parentElement; node; node = node.parentElement) {
-      ancestors.push(String(node.className ?? ''));
-    }
-
-    const surfaces = ancestors.join(' ');
 
     /*
-      Two constraints the picker's author flagged, pinned here because a later
-      layout change could violate either one silently.
-
-      Light surface: the component's contrast table is computed against white,
-      and its focus indicator is a white halo under a dark stroke - the halo is
-      the stroke that carries the ring over the region's dark fill, and on a
-      dark band it disappears into the backdrop.
+      Tense is what this test is really for. Someone who reads only the second
+      card heading - "point out the parts of an X-ray that look unusual" -
+      could take it for a feature of the current build, so the section denies
+      that outright, each entry is stage labelled above its own heading, and
+      the denial sits ahead of the cards in document order rather than in a
+      footnote under them.
     */
-    expect(surfaces).not.toMatch(
-      /bg-primary-800|bg-xray-dark|bg-neutral-[89]00/
-    );
-    expect(ancestors[0]).toMatch(/bg-white/);
+    const leadIn = within(roadmap).getByText(/neither item below is built/i);
+    expect(
+      leadIn.compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).not.toBe(0);
+    expect(within(roadmap).getByText(/^planned$/i)).toBeInTheDocument();
+    expect(within(roadmap).getByText(/^further out$/i)).toBeInTheDocument();
+    expect(
+      within(roadmap).getByText(/nothing on your image is assessed today/i)
+    ).toBeInTheDocument();
 
-    // Width: a cell of the scope section's two-column grid is 18.25rem at the
-    // 768px breakpoint, under the floor, so the picker lives outside it.
-    expect(surfaces).not.toMatch(/grid-cols-2/);
+    /*
+      The regulatory caveat, which is not optional framing here: software that
+      marks findings on a medical image is a device, not a feature, and the
+      footer's "not a medical device" has to stay true with this section on the
+      page. One sentence carrying both halves - what it would take, and that
+      this is the hard part - so a rewrite cannot drop one and keep the other.
+    */
+    const caveat = within(roadmap).getByText(/regulated\s*medical device/i);
+    expect(caveat).toHaveTextContent(/clinical validation/i);
+    expect(caveat).toHaveTextContent(/difficult/i);
   });
 });

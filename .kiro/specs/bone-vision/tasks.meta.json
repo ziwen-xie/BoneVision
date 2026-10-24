@@ -1199,6 +1199,66 @@
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792867580727
       }
+    ],
+    "38.1 Apply the requested copy edits": [
+      {
+        "executionId": "e6f29b90-3fe3-4084-924b-dd43a55562f0",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792868780491
+      },
+      {
+        "executionId": "b9b0d688-b22d-42da-8b7b-0f45b2aee420",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792869534352
+      },
+      {
+        "executionId": "dc857ba8-f25d-4495-b858-bfebff5d37c9",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792869579147
+      },
+      {
+        "executionId": "ab63c239-89c6-4145-bf66-37dfee0536d4",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792869984058
+      },
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792880973703
+      },
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792881918218
+      }
+    ],
+    "38.4 Make the viewer wordmark return to the landing page": [
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792881918749
+      }
+    ],
+    "38.2 Rewrite copy to remove formulaic phrasing": [
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792881920501
+      }
+    ],
+    "38.3 Add photographic figures": [
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792881920819
+      }
+    ],
+    "38. Revise landing page copy and add photographic figures": [
+      {
+        "executionId": "ed428548-866e-464e-b2f4-a0f6defa9a56",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792881920918
+      }
     ]
   }
 }

@@ -644,6 +644,31 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - Capture BodyParts3D as the CC BY 4.0 source for any future real per-bone geometry, with its attribution requirement
     - _Requirements: 11.1, 11.4_
 
+- [x] 38. Revise landing page copy and add photographic figures
+  - [x] 38.1 Apply the requested copy edits
+    - Remove the sub-headline beginning "No account, no install"
+    - Remove the sentence "No anatomy background needed."
+    - Rename the capabilities heading to "What is BoneVision"
+    - Retitle the bone-count card to "Bones individually explorable"
+    - _Requirements: 9.4_
+
+  - [x] 38.2 Rewrite copy to remove formulaic phrasing
+    - Eliminate rule-of-three constructions and repeated sentence shapes across adjacent items
+    - Vary sentence length and opening structure
+    - Cut filler and self-congratulatory framing
+    - _Requirements: 6.5, 9.4_
+
+  - [x] 38.3 Add photographic figures
+    - Use optimized derivatives of the CC0 demo radiograph as imagery
+    - Do not author illustrative SVG diagrams
+    - Lazy-load below-the-fold images and supply descriptive alternative text
+    - _Requirements: 9.1, 9.4, 13.5_
+
+  - [x] 38.4 Make the viewer wordmark return to the landing page
+    - Clicking the BoneVision wordmark in the viewer header navigates to the landing route
+    - Keyboard reachable with a visible focus indicator
+    - _Requirements: 9.5, 13.1, 13.2_
+
 ## Notes
 
 - Tasks marked with `*` are optional test tasks that can be skipped for faster MVP, but are recommended for hackathon quality
