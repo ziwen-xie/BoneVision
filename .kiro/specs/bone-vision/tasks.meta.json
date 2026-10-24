@@ -610,6 +610,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851274883
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742206
       }
     ],
     "25.2 Implement toast notification system": [
@@ -617,6 +622,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851274925
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742305
       }
     ],
     "25.3 Add error handling for model loading": [
@@ -624,6 +634,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851274964
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742422
       }
     ],
     "25.4 Add loading indicators": [
@@ -631,6 +646,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275011
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742501
       }
     ],
     "26.1 Create SplitLayout.tsx component": [
@@ -655,6 +675,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275096
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742611
       }
     ],
     "26.3 Ensure touch gesture support for 3D controls": [
@@ -662,6 +687,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275147
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742737
       }
     ],
     "27.1 Create Header.tsx component": [
@@ -693,6 +723,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275274
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742812
       }
     ],
     "29.1 Create healthcare-themed Tailwind color palette": [
@@ -700,6 +735,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275317
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742890
       }
     ],
     "29.2 Add smooth transitions and animations": [
@@ -707,6 +747,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275359
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863742959
       }
     ],
     "29.3 Refine typography and visual hierarchy": [
@@ -714,6 +759,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275407
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743022
       }
     ],
     "29.4 Style Educational Panel with card design": [
@@ -721,6 +771,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275461
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743073
       }
     ],
     "29.5 Add focus indicators for keyboard navigation": [
@@ -728,6 +783,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275551
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743141
       }
     ],
     "30.1 Add ARIA labels and roles": [
@@ -735,6 +795,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275611
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743193
       }
     ],
     "30.2 Add keyboard navigation support": [
@@ -742,6 +807,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275650
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743258
       }
     ],
     "30.3 Test browser zoom support": [
@@ -749,6 +819,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275710
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743323
       }
     ],
     "31.1 Configure Vitest for unit testing": [
@@ -773,6 +848,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275794
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743388
       }
     ],
     "32.1 Implement code splitting for routes and components": [
@@ -780,6 +860,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275843
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743461
       }
     ],
     "32.2 Optimize 3D model loading": [
@@ -787,6 +872,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275892
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743541
       }
     ],
     "32.3 Monitor and optimize frame rate": [
@@ -794,6 +884,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275938
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743593
       }
     ],
     "33.1 Add privacy notice to upload interface": [
@@ -801,6 +896,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851275976
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743643
       }
     ],
     "33.2 Create README.md for project": [
@@ -808,6 +908,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851276025
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743703
       }
     ],
     "33.3 Create HACKATHON.md for submission": [
@@ -815,6 +920,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851276066
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743755
       }
     ],
     "35. Final checkpoint and submission preparation": [
@@ -822,6 +932,11 @@
         "executionId": "edf69e4a-4724-4bc3-8a6c-b26864809a41",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792851276110
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743808
       }
     ],
     "3. Define core TypeScript interfaces and types": [
@@ -948,6 +1063,141 @@
         "executionId": "3f8d638a-4145-4743-8886-b26dfae4549f",
         "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
         "timestamp": 1792858680167
+      }
+    ],
+    "36.1 Add client-side routing between landing page and viewer": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743864
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863749472
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792864888404
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867571206
+      }
+    ],
+    "36.2 Create LandingPage component with hero and calls to action": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863743929
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867571801
+      }
+    ],
+    "36.3 Add capability and audience sections": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744070
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867573491
+      }
+    ],
+    "36.4 Make the landing page responsive and accessible": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744125
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867573990
+      }
+    ],
+    "37.1 Create BodyRegionPicker component": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744176
+      },
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863750103
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792864888933
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867574908
+      }
+    ],
+    "37.2 Wire region selection to body part loading": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744226
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792866622333
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867579071
+      }
+    ],
+    "37.3 Make the picker accessible": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744290
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867580243
+      }
+    ],
+    "37.4 Record the model-sourcing decision": [
+      {
+        "executionId": "df93ce35-3ea3-4a12-ba02-8b78319cd2bf",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792863744345
+      },
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867580658
+      }
+    ],
+    "36. Build the marketing landing page": [
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867574077
+      }
+    ],
+    "37. Add body region picker": [
+      {
+        "executionId": "6dafb768-610d-40b0-ab2d-089368d7ae4c",
+        "chatSessionId": "sess_46b7d013-e9bb-4cc8-ae35-08a79c10db1e",
+        "timestamp": 1792867580727
       }
     ]
   }

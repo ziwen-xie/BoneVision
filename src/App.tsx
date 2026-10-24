@@ -1,8 +1,15 @@
 /**
  * App
  *
- * Application shell and the one place that decides which experience is on
- * screen, driven entirely by the store's `mode`:
+ * Two things live here: the router, and the viewer shell it routes to.
+ *
+ * Routing (`useHashRoute`, hash-based for GitHub Pages - see that module):
+ *   `#/` or no fragment ... LandingPage
+ *   `#/viewer` ............ ViewerApp
+ *   anything else ......... LandingPage
+ *
+ * ViewerApp is the application proper, and the one place that decides which
+ * experience is on screen, driven entirely by the store's `mode`:
  *
  * - upload mode, before an image has been opened -> the UploadHandler, centered
  * - demo mode, or upload mode once the user's image is loaded -> the split view
@@ -21,6 +28,8 @@ import XRayViewer from './components/XRayViewer';
 import ModelViewer from './components/ModelViewer';
 import EducationalPanel from './components/EducationalPanel';
 import UploadHandler from './components/UploadHandler';
+import LandingPage from './components/LandingPage';
+import useHashRoute from './hooks/useHashRoute';
 import useBoneVisionStore from './stores/useBoneVisionStore';
 
 /**
@@ -68,7 +77,7 @@ function DemoImageCredit() {
   );
 }
 
-function App() {
+function ViewerApp() {
   const mode = useBoneVisionStore((state) => state.mode);
   const initializeDemo = useBoneVisionStore((state) => state.initializeDemo);
   const errorMessage = useBoneVisionStore((state) => state.errorMessage);
@@ -82,10 +91,27 @@ function App() {
    */
   const [hasCompletedUpload, setHasCompletedUpload] = useState(false);
 
-  // Demo content on first paint. `initializeDemo` collapses the duplicate call
-  // StrictMode makes here into a single load, so no local guard is needed.
+  /**
+   * Demo content when the viewer mounts - which is to say, not before.
+   *
+   * The demo load pulls an 836KB radiograph and the bone map, so it waits for
+   * the user to actually ask for the viewer rather than running behind the
+   * landing page. Mounting here is that signal, whether the user arrived by
+   * clicking a call to action or by opening `#/viewer` directly.
+   *
+   * The mode is read with `getState()` instead of the subscribed `mode` above,
+   * for two reasons: this is a mount-time decision, not something to redo on
+   * every mode change, and a landing-page "Upload your X-ray" click has already
+   * put the store in upload mode by the time this runs - loading the demo over
+   * the top of that would drop the user on the sample foot instead of the drop
+   * zone. In demo mode (the default, so also every deep link) the load runs as
+   * it always has, with `initializeDemo` collapsing StrictMode's duplicate call
+   * into a single fetch.
+   */
   useEffect(() => {
-    void initializeDemo();
+    if (useBoneVisionStore.getState().mode === 'demo') {
+      void initializeDemo();
+    }
   }, [initializeDemo]);
 
   // Back to demo mode means the user's image is gone (the store clears it), so
@@ -154,6 +180,12 @@ function App() {
       )}
     </div>
   );
+}
+
+function App() {
+  const route = useHashRoute();
+
+  return route === 'viewer' ? <ViewerApp /> : <LandingPage />;
 }
 
 export default App;

@@ -8,33 +8,10 @@
  */
 
 import useBoneVisionStore from '../stores/useBoneVisionStore';
+import BoneMark from './BoneMark';
 
 export interface HeaderProps {
   className?: string;
-}
-
-/**
- * Inline bone mark - drawn here on purpose: no external image request and no
- * third-party logo asset to license.
- */
-function BoneMark() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-6 w-6 text-primary-500"
-      fill="currentColor"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <g transform="rotate(-45 12 12)">
-        <rect x="5" y="10" width="14" height="4" rx="2" />
-        <circle cx="5.5" cy="9.6" r="3" />
-        <circle cx="5.5" cy="14.4" r="3" />
-        <circle cx="18.5" cy="9.6" r="3" />
-        <circle cx="18.5" cy="14.4" r="3" />
-      </g>
-    </svg>
-  );
 }
 
 function Header({ className = '' }: HeaderProps) {

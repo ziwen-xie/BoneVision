@@ -595,6 +595,55 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
   - Prepare demo video or live demo walkthrough.
   - Verify application runs smoothly in production build (npm run build && npm run preview).
 
+- [x] 36. Build the marketing landing page
+  - [x] 36.1 Add client-side routing between landing page and viewer
+    - Introduce hash-based routing so deep links survive GitHub Pages without a 404.html rewrite fallback
+    - Route `#/` to the landing page and `#/viewer` to the existing split-view application
+    - Preserve the existing demo-mode initialization when entering the viewer
+    - _Requirements: 9.5_
+
+  - [x] 36.2 Create LandingPage component with hero and calls to action
+    - Hero section with product name, one-line value proposition, and supporting subcopy
+    - Primary "Try the demo" action routing to the viewer in demo mode
+    - Secondary "Upload your X-ray" action routing to the viewer in upload mode
+    - _Requirements: 9.1, 9.4, 9.5, 7.6, 1.1_
+
+  - [x] 36.3 Add capability and audience sections
+    - Communicate the synchronized 2D/3D highlighting, plain-language explanations, and local-only image processing
+    - Describe who benefits: patients, students, and clinicians explaining findings
+    - Include a short "how it works" sequence covering upload, choose body part, explore
+    - State the educational-not-diagnostic scope and the client-side privacy guarantee
+    - _Requirements: 6.5, 9.1, 9.4, 15.4_
+
+  - [x] 36.4 Make the landing page responsive and accessible
+    - Single-column stacking below 768px, multi-column from 768px up
+    - Semantic landmarks, logical heading order, and keyboard-reachable actions with visible focus
+    - All text at WCAG AA contrast
+    - _Requirements: 8.1, 8.2, 8.7, 13.1, 13.2, 13.3, 13.4_
+
+- [x] 37. Add body region picker
+  - [x] 37.1 Create BodyRegionPicker component
+    - Render a flat, inline SVG body silhouette with selectable regions (no 3D geometry, no external model asset)
+    - Regions with a mapping configuration are selectable; everything else is visibly marked unavailable rather than selectable-but-broken
+    - Hover and focus states on each region, with the region name shown
+    - _Requirements: 1.6, 1.7, 9.1, 9.2_
+
+  - [x] 37.2 Wire region selection to body part loading
+    - Selecting an available region calls the existing setBodyPart flow to load that region's mapping configuration
+    - Only the foot is available, so the picker must make the current coverage honest and obvious
+    - _Requirements: 1.7, 12.6_
+
+  - [x] 37.3 Make the picker accessible
+    - Keyboard reachable with visible focus, arrow-key or tab traversal between regions
+    - ARIA labels per region and aria-disabled for unavailable regions so they stay discoverable
+    - WCAG AA contrast on all labels and the selected state
+    - _Requirements: 13.1, 13.2, 13.3, 13.4_
+
+  - [x] 37.4 Record the model-sourcing decision
+    - Document that the navigation affordance is a 2D silhouette rather than a 3D skeleton, and why
+    - Capture BodyParts3D as the CC BY 4.0 source for any future real per-bone geometry, with its attribution requirement
+    - _Requirements: 11.1, 11.4_
+
 ## Notes
 
 - Tasks marked with `*` are optional test tasks that can be skipped for faster MVP, but are recommended for hackathon quality
