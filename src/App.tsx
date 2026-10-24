@@ -30,7 +30,7 @@ import EducationalPanel from './components/EducationalPanel';
 import UploadHandler from './components/UploadHandler';
 import LandingPage from './components/LandingPage';
 import useHashRoute from './hooks/useHashRoute';
-import useBoneVisionStore from './stores/useBoneVisionStore';
+import useSkeletonMapStore from './stores/useSkeletonMapStore';
 
 /**
  * Attribution for the demo radiograph, shown only while demo mode is active.
@@ -78,10 +78,10 @@ function DemoImageCredit() {
 }
 
 function ViewerApp() {
-  const mode = useBoneVisionStore((state) => state.mode);
-  const initializeDemo = useBoneVisionStore((state) => state.initializeDemo);
-  const errorMessage = useBoneVisionStore((state) => state.errorMessage);
-  const clearError = useBoneVisionStore((state) => state.clearError);
+  const mode = useSkeletonMapStore((state) => state.mode);
+  const initializeDemo = useSkeletonMapStore((state) => state.initializeDemo);
+  const errorMessage = useSkeletonMapStore((state) => state.errorMessage);
+  const clearError = useSkeletonMapStore((state) => state.clearError);
 
   /**
    * Whether the user has opened an image of their own in this upload session.
@@ -109,7 +109,7 @@ function ViewerApp() {
    * into a single fetch.
    */
   useEffect(() => {
-    if (useBoneVisionStore.getState().mode === 'demo') {
+    if (useSkeletonMapStore.getState().mode === 'demo') {
       void initializeDemo();
     }
   }, [initializeDemo]);

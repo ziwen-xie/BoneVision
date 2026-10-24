@@ -2,7 +2,7 @@
  * LandingPage
  *
  * The front door at `#/`. Its whole job is to tell a first-time visitor what
- * BoneVision is and put them into the viewer in the right mode, so every claim
+ * SkeletonMap is and put them into the viewer in the right mode, so every claim
  * on it is one the implementation actually delivers - an inflated promise on a
  * healthcare tool costs more trust than a modest one earns.
  *
@@ -39,7 +39,7 @@
  * uglier and less honest than the real thing.
  *
  * Their `src` goes through `import.meta.env.BASE_URL` rather than a leading
- * slash. Pages serves this app from `/BoneVision/`, so `/landing/x.webp` is a
+ * slash. Pages serves this app from `/SkeletonMap/`, so `/landing/x.webp` is a
  * 404 there while resolving fine in dev - the failure only shows up after
  * deploy, which it has done once already on this project.
  *
@@ -85,9 +85,9 @@
  * 13.2, 13.3, 13.4_
  */
 
-import useBoneVisionStore from '../stores/useBoneVisionStore';
+import useSkeletonMapStore from '../stores/useSkeletonMapStore';
 import { navigateToRoute } from '../hooks/useHashRoute';
-import BoneMark from './BoneMark';
+import SkeletonMapMark from './SkeletonMapMark';
 
 /**
  * Shared icon wrapper. Every icon here is decorative - the heading beside it
@@ -219,7 +219,7 @@ const ROADMAP = [
 ];
 
 export default function LandingPage() {
-  const setMode = useBoneVisionStore((state) => state.setMode);
+  const setMode = useSkeletonMapStore((state) => state.setMode);
 
   /**
    * Demo path. `setMode('demo')` reloads the sample radiograph and bone map if
@@ -253,10 +253,10 @@ export default function LandingPage() {
         */}
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-3 gap-y-2 px-4 py-4 sm:px-6">
           <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-primary-50">
-            <BoneMark />
+            <SkeletonMapMark />
           </span>
           <p className="font-display text-lg font-bold leading-tight text-primary-700">
-            BoneVision
+            SkeletonMap
           </p>
           {/*
             A plain anchor, not a button: this one is pure navigation, so it
@@ -298,7 +298,7 @@ export default function LandingPage() {
                   Understand what your X-ray is showing you
                 </h1>
                 <p className="mt-5 text-lg leading-relaxed text-neutral-800 sm:text-xl">
-                  BoneVision puts a radiograph next to an interactive 3D
+                  SkeletonMap puts a radiograph next to an interactive 3D
                   skeleton and keeps the two in step.
                 </p>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-700">
@@ -374,7 +374,7 @@ export default function LandingPage() {
               id="capabilities-heading"
               className="font-display text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl"
             >
-              What is BoneVision
+              What is SkeletonMap
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-700">
               An educational X-ray reader that runs entirely in the browser,
@@ -548,9 +548,9 @@ export default function LandingPage() {
       <footer className="border-t border-neutral-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
           <div className="flex items-center gap-3">
-            <BoneMark className="h-5 w-5 text-primary-600" />
+            <SkeletonMapMark className="h-5 w-5 text-primary-600" />
             <p className="font-display text-base font-semibold text-primary-700">
-              BoneVision
+              SkeletonMap
             </p>
           </div>
           {/*

@@ -27,7 +27,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { getBoneInfo } from '../services/mappingService';
 import type { EducationalPanelProps } from '../types';
 
@@ -40,9 +40,9 @@ const FADE_DURATION_MS = 150;
 
 export default function EducationalPanel({ className = '' }: EducationalPanelProps) {
   // Individual selectors so the panel only re-renders when something it shows changes.
-  const hoveredBoneId = useBoneVisionStore((state) => state.hoveredBoneId);
-  const selectedBoneId = useBoneVisionStore((state) => state.selectedBoneId);
-  const mappingConfig = useBoneVisionStore((state) => state.mappingConfig);
+  const hoveredBoneId = useSkeletonMapStore((state) => state.hoveredBoneId);
+  const selectedBoneId = useSkeletonMapStore((state) => state.selectedBoneId);
+  const mappingConfig = useSkeletonMapStore((state) => state.mappingConfig);
 
   // Hover wins over selection: the panel follows the cursor, and falls back to
   // the focused bone once the cursor leaves both views.
@@ -153,7 +153,7 @@ export default function EducationalPanel({ className = '' }: EducationalPanelPro
         ) : (
           <article>
             <h2 className="font-display text-2xl font-bold leading-tight text-neutral-900">
-              Welcome to BoneVision
+              Welcome to SkeletonMap
             </h2>
             <p className="mt-4 text-base leading-relaxed text-neutral-800">
               Move your cursor over any bone in the X-ray or the 3D model to read what
@@ -187,7 +187,7 @@ export default function EducationalPanel({ className = '' }: EducationalPanelPro
       */}
       <footer className="mt-6 border-t border-neutral-200 pt-4">
         <p className="text-xs leading-relaxed text-neutral-600">
-          BoneVision is a learning tool, not a diagnosis. It describes healthy anatomy
+          SkeletonMap is a learning tool, not a diagnosis. It describes healthy anatomy
           in general and says nothing about your own health or your own images. If you
           have questions about an X-ray, an injury, or symptoms, talk them through with
           your doctor or another clinician.

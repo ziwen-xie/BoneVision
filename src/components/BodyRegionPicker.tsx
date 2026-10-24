@@ -73,7 +73,7 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import {
   BODY_REGIONS,
   SILHOUETTE_FILLER_PATHS,
@@ -166,8 +166,8 @@ export default function BodyRegionPicker({
   onRegionSelected,
   className = '',
 }: BodyRegionPickerProps) {
-  const setBodyPart = useBoneVisionStore((state) => state.setBodyPart);
-  const loadedBodyPart = useBoneVisionStore((state) => state.bodyPart);
+  const setBodyPart = useSkeletonMapStore((state) => state.setBodyPart);
+  const loadedBodyPart = useSkeletonMapStore((state) => state.bodyPart);
 
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -381,7 +381,7 @@ export default function BodyRegionPicker({
 
       <p className="mt-2 text-xs leading-relaxed text-neutral-600">
         {AVAILABLE_COUNT} of {BODY_REGIONS.length} regions mapped. The rest are
-        shown so you can see where BoneVision is going.
+        shown so you can see where SkeletonMap is going.
       </p>
 
       <div role="status" aria-live="polite" className="sr-only">

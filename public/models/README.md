@@ -57,7 +57,7 @@ Database Center for Life Science (DBCLS).
 
 Z-Anatomy is licensed CC BY-SA 4.0. The ShareAlike term is viral: it would impose
 ShareAlike obligations on anything derived from the assets, which constrains how
-BoneVision's own geometry and any downstream remixes could be licensed. BodyParts3D's
+SkeletonMap's own geometry and any downstream remixes could be licensed. BodyParts3D's
 plain CC BY 4.0 carries the same attribution duty without that knock-on, so it wins on
 licensing alone.
 

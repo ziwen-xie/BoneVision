@@ -19,7 +19,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import BoneModelGroup from './BoneModelGroup';
 import CameraAnimator from './CameraAnimator';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { ERROR_MESSAGES, type ModelViewerProps } from '../types';
 import {
   CAMERA_FOV,
@@ -76,7 +76,7 @@ function UnsupportedNotice({ detail }: { detail?: string }) {
         {ERROR_MESSAGES.WEBGL_NOT_SUPPORTED}
       </p>
       <p className="max-w-sm text-xs text-neutral-400">
-        BoneVision needs WebGL, which is available in current versions of Chrome, Edge,
+        SkeletonMap needs WebGL, which is available in current versions of Chrome, Edge,
         Firefox and Safari. Hardware acceleration also has to be enabled in your browser
         settings. The X-ray view on the left still works without it.
       </p>
@@ -202,9 +202,9 @@ export default function ModelViewer({ className = '' }: ModelViewerProps) {
   // Probed once per mount; the answer cannot change while the tab is open.
   const [webglSupported] = useState(detectWebGL);
 
-  const mappingConfig = useBoneVisionStore((state) => state.mappingConfig);
-  const isLoadingModel = useBoneVisionStore((state) => state.isLoadingModel);
-  const setHoveredBone = useBoneVisionStore((state) => state.setHoveredBone);
+  const mappingConfig = useSkeletonMapStore((state) => state.mappingConfig);
+  const isLoadingModel = useSkeletonMapStore((state) => state.isLoadingModel);
+  const setHoveredBone = useSkeletonMapStore((state) => state.setHoveredBone);
 
   if (!webglSupported) {
     return <UnsupportedNotice />;

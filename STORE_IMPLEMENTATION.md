@@ -1,13 +1,13 @@
-# BoneVision Store Implementation
+# SkeletonMap Store Implementation
 
 ## Overview
 
-Task 4.1 has been successfully completed. The main BoneVisionStore has been implemented using Zustand for global state management in the BoneVision application.
+Task 4.1 has been successfully completed. The main SkeletonMapStore has been implemented using Zustand for global state management in the SkeletonMap application.
 
 ## Implementation Details
 
 ### File Created
-- **`src/stores/useBoneVisionStore.ts`** - Main Zustand store implementation
+- **`src/stores/useSkeletonMapStore.ts`** - Main Zustand store implementation
 
 ### State Properties Implemented
 
@@ -80,7 +80,7 @@ The implementation includes internal helper functions for image processing:
 ## Usage Example
 
 ```typescript
-import { useBoneVisionStore } from './stores';
+import { useSkeletonMapStore } from './stores';
 
 function MyComponent() {
   const {
@@ -89,7 +89,7 @@ function MyComponent() {
     setSelectedBone,
     setHoveredBone,
     loadXray,
-  } = useBoneVisionStore();
+  } = useSkeletonMapStore();
 
   // Set selected bone
   const handleBoneClick = (boneId: string) => {
@@ -120,7 +120,7 @@ function MyComponent() {
 
 ### Testing Components Created
 - **`src/components/StoreDemo.tsx`** - Interactive demo component for testing store
-- **`src/stores/useBoneVisionStore.manual-test.ts`** - Manual testing utilities
+- **`src/stores/useSkeletonMapStore.manual-test.ts`** - Manual testing utilities
 
 ### Store Demo Component
 A comprehensive demo component has been created that:
@@ -183,10 +183,10 @@ This implementation satisfies the following requirements:
 ## Files Modified/Created
 
 ### Created
-- `src/stores/useBoneVisionStore.ts` - Main store implementation
+- `src/stores/useSkeletonMapStore.ts` - Main store implementation
 - `src/stores/index.ts` - Store exports
 - `src/components/StoreDemo.tsx` - Testing component
-- `src/stores/useBoneVisionStore.manual-test.ts` - Manual tests
+- `src/stores/useSkeletonMapStore.manual-test.ts` - Manual tests
 - `STORE_IMPLEMENTATION.md` - This documentation
 
 ### Modified

@@ -29,7 +29,7 @@ export const SILHOUETTE_VIEW_BOX = '0 0 200 456';
 
 /**
  * Body part keys the store knows how to load. Mirrors the parameter type of
- * `setBodyPart` in `src/stores/useBoneVisionStore.ts`.
+ * `setBodyPart` in `src/stores/useSkeletonMapStore.ts`.
  */
 export type SelectableBodyPart = 'foot';
 

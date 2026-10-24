@@ -42,7 +42,7 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 
 export interface BodyPartSelectorProps {
   /** Called once a body part has been selected and its mapping has loaded. */
@@ -106,7 +106,7 @@ export default function BodyPartSelector({
   onSelected,
   onDismiss,
 }: BodyPartSelectorProps) {
-  const setBodyPart = useBoneVisionStore((state) => state.setBodyPart);
+  const setBodyPart = useSkeletonMapStore((state) => state.setBodyPart);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -223,7 +223,7 @@ export default function BodyPartSelector({
           id="body-part-selector-description"
           className="mt-2 text-sm leading-relaxed text-neutral-700"
         >
-          Picking the body part tells BoneVision which bone map and 3D model to
+          Picking the body part tells SkeletonMap which bone map and 3D model to
           load, so the right bones light up when you explore the image.
         </p>
 

@@ -13,7 +13,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
-import useBoneVisionStore from './stores/useBoneVisionStore';
+import useSkeletonMapStore from './stores/useSkeletonMapStore';
 
 /**
  * Stand-in for the real demo load. The genuine action fetches the bone map and
@@ -27,9 +27,9 @@ let initializeDemo: ReturnType<typeof createDemoStub>;
 
 beforeEach(() => {
   window.location.hash = '';
-  useBoneVisionStore.getState().reset();
+  useSkeletonMapStore.getState().reset();
   initializeDemo = createDemoStub();
-  useBoneVisionStore.setState({ initializeDemo });
+  useSkeletonMapStore.setState({ initializeDemo });
 });
 
 afterEach(() => {
@@ -78,7 +78,7 @@ describe('App routing', () => {
 
   it('opens the drop zone, without loading the demo, when the store is in upload mode', () => {
     window.location.hash = '#/viewer';
-    useBoneVisionStore.getState().prepareUpload();
+    useSkeletonMapStore.getState().prepareUpload();
 
     render(<App />);
 

@@ -1,5 +1,5 @@
 /**
- * Store exports for BoneVision application
+ * Store exports for SkeletonMap application
  */
 
-export { default as useBoneVisionStore } from './useBoneVisionStore';
+export { default as useSkeletonMapStore } from './useSkeletonMapStore';

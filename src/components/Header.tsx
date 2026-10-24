@@ -1,7 +1,7 @@
 /**
  * Header
  *
- * Sticky application header with BoneVision branding, tagline, a demo/upload
+ * Sticky application header with SkeletonMap branding, tagline, a demo/upload
  * mode toggle wired to the Zustand store, and a demo-data badge. The branding
  * doubles as the link home - see the comment on the anchor for why it is an
  * anchor and why it carries its own accessible name.
@@ -9,16 +9,16 @@
  * _Requirements: 9.1, 9.5, 7.5, 7.6, 13.1, 13.2_
  */
 
-import useBoneVisionStore from '../stores/useBoneVisionStore';
-import BoneMark from './BoneMark';
+import useSkeletonMapStore from '../stores/useSkeletonMapStore';
+import SkeletonMapMark from './SkeletonMapMark';
 
 export interface HeaderProps {
   className?: string;
 }
 
 function Header({ className = '' }: HeaderProps) {
-  const mode = useBoneVisionStore((state) => state.mode);
-  const setMode = useBoneVisionStore((state) => state.setMode);
+  const mode = useSkeletonMapStore((state) => state.mode);
+  const setMode = useSkeletonMapStore((state) => state.setMode);
   const isDemo = mode === 'demo';
 
   const toggleMode = () => {
@@ -38,27 +38,27 @@ function Header({ className = '' }: HeaderProps) {
           navigation, so it stays middle-clickable, copyable and openable in a
           new tab, and the browser owns the history entry. The hash form is what
           works on GitHub Pages, where `/` would leave the project subpath and
-          `/BoneVision/` would be a full page load - see useHashRoute for why
+          `/SkeletonMap/` would be a full page load - see useHashRoute for why
           the whole router lives in the fragment.
 
           The mark, the wordmark and the tagline are all inside the link, so the
           whole block is one target rather than a 10px-wide logo. That would
-          otherwise make the accessible name "BoneVision Understanding your
+          otherwise make the accessible name "SkeletonMap Understanding your
           X-ray, one bone at a time", which reads as a sentence rather than a
           destination, so an explicit label names the destination instead. The
           mark stays `aria-hidden` (its own default) and contributes nothing.
         */}
         <a
           href="#/"
-          aria-label="BoneVision home page"
+          aria-label="SkeletonMap home page"
           className="-mx-1.5 flex min-w-0 items-center gap-3 rounded-lg px-1.5 py-1 transition-colors duration-150 hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
         >
           <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-primary-50">
-            <BoneMark />
+            <SkeletonMapMark />
           </span>
           <span className="min-w-0">
             <span className="font-display block truncate text-lg font-bold leading-tight text-primary-700">
-              BoneVision
+              SkeletonMap
             </span>
             <span className="block truncate text-sm text-neutral-600">
               Understanding your X-ray, one bone at a time

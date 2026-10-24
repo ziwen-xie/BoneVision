@@ -22,7 +22,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type React from 'react';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { getBoneAtPoint } from '../services/mappingService';
 import { scaleCoordinates } from '../utils/geometry';
 import type { InteractiveOverlayProps, MappingConfig } from '../types';
@@ -127,12 +127,12 @@ export default function InteractiveOverlay({
 }: InteractiveOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const mappingConfig = useBoneVisionStore((state) => state.mappingConfig);
-  const hoveredBoneId = useBoneVisionStore((state) => state.hoveredBoneId);
-  const selectedBoneId = useBoneVisionStore((state) => state.selectedBoneId);
-  const setHoveredBone = useBoneVisionStore((state) => state.setHoveredBone);
-  const setSelectedBone = useBoneVisionStore((state) => state.setSelectedBone);
-  const focusBone = useBoneVisionStore((state) => state.focusBone);
+  const mappingConfig = useSkeletonMapStore((state) => state.mappingConfig);
+  const hoveredBoneId = useSkeletonMapStore((state) => state.hoveredBoneId);
+  const selectedBoneId = useSkeletonMapStore((state) => state.selectedBoneId);
+  const setHoveredBone = useSkeletonMapStore((state) => state.setHoveredBone);
+  const setSelectedBone = useSkeletonMapStore((state) => state.setSelectedBone);
+  const focusBone = useSkeletonMapStore((state) => state.focusBone);
 
   /** Latest pointer position, consumed by the next animation frame. */
   const pointerRef = useRef<{ x: number; y: number } | null>(null);
@@ -219,7 +219,7 @@ export default function InteractiveOverlay({
     // Set imperatively to avoid a React render on every boundary crossing.
     canvas.style.cursor = boneId ? 'pointer' : 'default';
 
-    if (boneId !== useBoneVisionStore.getState().hoveredBoneId) {
+    if (boneId !== useSkeletonMapStore.getState().hoveredBoneId) {
       setHoveredBone(boneId);
     }
   }, [mappingConfig, width, height, setHoveredBone]);
@@ -312,7 +312,7 @@ export default function InteractiveOverlay({
       }
 
       const { hoveredBoneId: hovered, selectedBoneId: selected } =
-        useBoneVisionStore.getState();
+        useSkeletonMapStore.getState();
       const activeId = hovered ?? selected;
       const currentIndex = bones.findIndex((bone) => bone.id === activeId);
 

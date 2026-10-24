@@ -1,6 +1,6 @@
 # Utils
 
-This directory contains utility functions and helpers for the BoneVision application.
+This directory contains utility functions and helpers for the SkeletonMap application.
 
 ## Utilities
 

@@ -1,11 +1,11 @@
-# BoneVision Project Setup
+# SkeletonMap Project Setup
 
 ## Directory Structure
 
 The following directory structure has been created:
 
 ```
-BoneVision/
+SkeletonMap/
 ├── src/
 │   ├── components/     # React components
 │   ├── services/       # Service layer (image, model, mapping, validation)
@@ -48,7 +48,7 @@ BoneVision/
 
 ### TypeScript (`src/types/index.ts`)
 - Complete interface definitions for all domain models
-- State management types (BoneVisionStore)
+- State management types (SkeletonMapStore)
 - Component prop types
 - Service interface definitions
 - Constants (error messages, constraints, durations)

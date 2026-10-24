@@ -19,7 +19,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import BodyRegionPicker from './BodyRegionPicker';
-import useBoneVisionStore from '../stores/useBoneVisionStore';
+import useSkeletonMapStore from '../stores/useSkeletonMapStore';
 import { BODY_REGIONS } from '../models/bodySilhouette';
 
 /** Minimal payload shaped like `public/config/foot-mapping.json`. */
@@ -45,7 +45,7 @@ function region(name: RegExp): HTMLElement {
 }
 
 beforeEach(() => {
-  useBoneVisionStore.getState().reset();
+  useSkeletonMapStore.getState().reset();
 });
 
 afterEach(() => {
@@ -112,8 +112,8 @@ describe('BodyRegionPicker', () => {
     );
 
     // The real store state, not a parallel loading path of our own.
-    expect(useBoneVisionStore.getState().bodyPart).toBe('foot');
-    expect(useBoneVisionStore.getState().mappingConfig).toEqual(
+    expect(useSkeletonMapStore.getState().bodyPart).toBe('foot');
+    expect(useSkeletonMapStore.getState().mappingConfig).toEqual(
       MAPPING_PAYLOAD
     );
   });
@@ -144,8 +144,8 @@ describe('BodyRegionPicker', () => {
     // region is inert, not selectable-but-broken.
     expect(fetchMock).not.toHaveBeenCalled();
     expect(onRegionSelected).not.toHaveBeenCalled();
-    expect(useBoneVisionStore.getState().bodyPart).toBeNull();
-    expect(useBoneVisionStore.getState().mappingConfig).toBeNull();
+    expect(useSkeletonMapStore.getState().bodyPart).toBeNull();
+    expect(useSkeletonMapStore.getState().mappingConfig).toBeNull();
   });
 
   it('surfaces a local error when the bone map fails to load', async () => {
@@ -161,7 +161,7 @@ describe('BodyRegionPicker', () => {
 
     // The store reports the failure too, but the picker can be mounted outside
     // the shell that renders `errorMessage`, so it must not rely on it.
-    expect(useBoneVisionStore.getState().errorMessage).toBeTruthy();
+    expect(useSkeletonMapStore.getState().errorMessage).toBeTruthy();
     expect(onRegionSelected).not.toHaveBeenCalled();
   });
 

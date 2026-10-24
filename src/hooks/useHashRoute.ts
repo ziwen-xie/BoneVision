@@ -6,14 +6,14 @@
  *
  * Why the hash and not the path
  * -----------------------------
- * The site is deployed to GitHub Pages under https://<user>.github.io/BoneVision/.
- * Pages serves static files only: a request for `/BoneVision/viewer` is a 404
+ * The site is deployed to GitHub Pages under https://<user>.github.io/SkeletonMap/.
+ * Pages serves static files only: a request for `/SkeletonMap/viewer` is a 404
  * because no such file exists, and the usual workaround is to ship a 404.html
  * that re-serves index.html and replays the intended path from `sessionStorage`.
  * That trick costs a real HTTP 404 on every deep link, confuses crawlers, and
  * breaks the back button in subtle ways. Everything after `#` is never sent to
  * the server, so hash routes deep-link correctly on Pages with no rewrite layer
- * at all - `.../BoneVision/#/viewer` is a plain request for index.html.
+ * at all - `.../SkeletonMap/#/viewer` is a plain request for index.html.
  *
  * The trade-off is cosmetic (a `#` in shared URLs) and the fragment is still a
  * first-class part of the URL: copyable, bookmarkable, and restored on reload.

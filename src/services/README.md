@@ -1,6 +1,6 @@
 # Services
 
-This directory contains service layer modules for the BoneVision application.
+This directory contains service layer modules for the SkeletonMap application.
 
 ## Services
 

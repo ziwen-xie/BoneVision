@@ -1,5 +1,5 @@
 /**
- * Core type definitions for BoneVision application
+ * Core type definitions for SkeletonMap application
  */
 
 import * as THREE from 'three';
@@ -63,7 +63,7 @@ export interface ImageData {
 // State Management
 // ============================================================================
 
-export interface BoneVisionStore {
+export interface SkeletonMapStore {
   // Interaction state
   selectedBoneId: string | null;
   hoveredBoneId: string | null;
@@ -213,7 +213,7 @@ export const ERROR_MESSAGES = {
   DICOM_PARSE_ERROR: 'Unable to parse DICOM file. The file may be corrupted.',
   NETWORK_ERROR: 'Unable to load resources. Please check your internet connection.',
   WEBGL_NOT_SUPPORTED:
-    'Your browser does not support WebGL. Please update your browser to use BoneVision.',
+    'Your browser does not support WebGL. Please update your browser to use SkeletonMap.',
   MODEL_LOAD_ERROR: 'Unable to load 3D model. Please try again.',
   MAPPING_LOAD_ERROR: 'Unable to load bone mapping configuration.',
 } as const;

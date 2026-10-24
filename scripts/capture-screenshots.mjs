@@ -10,7 +10,7 @@
 import { chromium } from '@playwright/test';
 import { readFileSync, mkdirSync } from 'node:fs';
 
-const BASE = process.argv[2] ?? 'https://ziwen-xie.github.io/BoneVision';
+const BASE = process.argv[2] ?? 'https://ziwen-xie.github.io/SkeletonMap';
 const OUT = 'public/landing';
 const BONE = 'metatarsal-1';
 

@@ -34,7 +34,7 @@ import {
   registerBoneBounds,
   setViewportAspect,
 } from '../models/boneBoundsRegistry';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import type { Bounds } from '../utils/cameraFraming';
 import { type HighlightTarget, stepHighlights } from '../utils/boneHighlight';
 
@@ -83,11 +83,11 @@ function disposeSkeleton(group: THREE.Group): void {
 }
 
 export default function BoneModelGroup() {
-  const mappingConfig = useBoneVisionStore((state) => state.mappingConfig);
-  const setHoveredBone = useBoneVisionStore((state) => state.setHoveredBone);
-  const setSelectedBone = useBoneVisionStore((state) => state.setSelectedBone);
-  const focusBone = useBoneVisionStore((state) => state.focusBone);
-  const frameModel = useBoneVisionStore((state) => state.frameModel);
+  const mappingConfig = useSkeletonMapStore((state) => state.mappingConfig);
+  const setHoveredBone = useSkeletonMapStore((state) => state.setHoveredBone);
+  const setSelectedBone = useSkeletonMapStore((state) => state.setSelectedBone);
+  const focusBone = useSkeletonMapStore((state) => state.focusBone);
+  const frameModel = useSkeletonMapStore((state) => state.frameModel);
 
   const gl = useThree((state) => state.gl);
   const viewportWidth = useThree((state) => state.size.width);
@@ -227,7 +227,7 @@ export default function BoneModelGroup() {
     // Read rather than subscribe: see the note at the top of this file. This is the
     // receiving end of both highlight directions - the X-ray overlay and the pointer
     // handlers below write the same two store fields.
-    const { hoveredBoneId, selectedBoneId } = useBoneVisionStore.getState();
+    const { hoveredBoneId, selectedBoneId } = useSkeletonMapStore.getState();
 
     stepHighlights(entries, hoveredBoneId, selectedBoneId, delta);
   });
@@ -251,7 +251,7 @@ export default function BoneModelGroup() {
             // Leaving one bone for an adjacent one can fire this *after* the neighbour's
             // `onPointerOver`, so clear the hover (and the cursor) only if it is still
             // ours - otherwise moving along the foot would blank the new highlight.
-            if (useBoneVisionStore.getState().hoveredBoneId === entry.boneId) {
+            if (useSkeletonMapStore.getState().hoveredBoneId === entry.boneId) {
               setHoveredBone(null);
               gl.domElement.style.cursor = '';
             }

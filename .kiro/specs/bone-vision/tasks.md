@@ -1,8 +1,8 @@
-# Implementation Plan: BoneVision
+# Implementation Plan: SkeletonMap
 
 ## Overview
 
-BoneVision is a browser-based educational web application that combines X-ray image visualization with interactive 3D anatomical models. This implementation plan breaks down the development into discrete, manageable tasks that build incrementally from project foundation through feature implementation to polish and optimization.
+SkeletonMap is a browser-based educational web application that combines X-ray image visualization with interactive 3D anatomical models. This implementation plan breaks down the development into discrete, manageable tasks that build incrementally from project foundation through feature implementation to polish and optimization.
 
 The application uses React 18+ with TypeScript, React Three Fiber for 3D rendering, Zustand for state management, and Tailwind CSS for styling. All tasks focus on code implementation, testing, and configuration - no deployment or user acceptance testing is included.
 
@@ -34,7 +34,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - _Requirements: 12.1, 12.2, 12.3_
   
   - [x] 3.2 Create state management interfaces
-    - Define BoneVisionStore interface with all state properties and actions
+    - Define SkeletonMapStore interface with all state properties and actions
     - Define store slice interfaces if using modular store pattern
     - _Requirements: All (state management is central to all features)_
   
@@ -44,7 +44,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - _Requirements: 1.1-1.7, 2.1-2.6, 3.1-3.6, 6.1-6.7_
 
 - [x] 4. Implement Zustand state management store
-  - [x] 4.1 Create main BoneVisionStore with Zustand
+  - [x] 4.1 Create main SkeletonMapStore with Zustand
     - Implement state properties: selectedBoneId, hoveredBoneId, mode, bodyPart, xrayImage, cameraPosition, etc.
     - Implement actions: setSelectedBone, setHoveredBone, loadXray, setBodyPart, focusBone, reset
     - Add loading and error state management
@@ -266,7 +266,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - _Requirements: 6.1, 6.2, 6.3_
   
   - [x] 20.2 Implement default state content
-    - Display "Welcome to BoneVision" heading when no bone is active
+    - Display "Welcome to SkeletonMap" heading when no bone is active
     - Show introductory text explaining how to interact
     - Include usage instructions: rotate, zoom, pan controls
     - _Requirements: 6.6_
@@ -425,7 +425,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
 
 - [x] 27. Implement Header component and application branding
   - [x] 27.1 Create Header.tsx component
-    - Display "BoneVision" branding with logo or icon
+    - Display "SkeletonMap" branding with logo or icon
     - Add navigation controls: Demo Mode toggle button
     - Style with consistent healthcare color scheme
     - Make header sticky or fixed at top
@@ -547,7 +547,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - Add "I understand" acknowledgment button
     - _Requirements: 15.1, 15.4_
   
-  - [ ] 33.2 Create README.md for project
+  - [x] 33.2 Create README.md for project
     - Document project overview and purpose
     - List features and technology stack
     - Provide setup and installation instructions
@@ -556,7 +556,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - Add credits for 3D models and X-ray images
     - _Requirements: All (documentation covers entire project)_
   
-  - [ ] 33.3 Create HACKATHON.md for submission
+  - [x] 33.3 Create HACKATHON.md for submission
     - Describe project for Hackachusetts Healthcare & Biotech track
     - Highlight Kiro usage: spec workflow, task execution, testing
     - List implemented features and demonstrate requirements coverage
@@ -589,7 +589,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - Verify all metrics meet targets
     - _Requirements: 10.2, 10.4, 13.1-13.6_
 
-- [ ] 35. Final checkpoint and submission preparation
+- [-] 35. Final checkpoint and submission preparation
   - Ensure all tests pass, all features are implemented, and documentation is complete.
   - Review HACKATHON.md and README.md for clarity and completeness.
   - Prepare demo video or live demo walkthrough.
@@ -648,7 +648,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
   - [x] 38.1 Apply the requested copy edits
     - Remove the sub-headline beginning "No account, no install"
     - Remove the sentence "No anatomy background needed."
-    - Rename the capabilities heading to "What is BoneVision"
+    - Rename the capabilities heading to "What is SkeletonMap"
     - Retitle the bone-count card to "Bones individually explorable"
     - _Requirements: 9.4_
 
@@ -665,7 +665,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
     - _Requirements: 9.1, 9.4, 13.5_
 
   - [x] 38.4 Make the viewer wordmark return to the landing page
-    - Clicking the BoneVision wordmark in the viewer header navigates to the landing route
+    - Clicking the SkeletonMap wordmark in the viewer header navigates to the landing route
     - Keyboard reachable with a visible focus indicator
     - _Requirements: 9.5, 13.1, 13.2_
 
@@ -681,7 +681,7 @@ The application uses React 18+ with TypeScript, React Three Fiber for 3D renderi
 - Tasks marked with `*` are optional test tasks that can be skipped for faster MVP, but are recommended for hackathon quality
 - Each task references specific requirements for traceability
 - Checkpoints ensure incremental validation and catch issues early
-- Property-based testing is NOT included as BoneVision is primarily a UI/UX application with side effects
+- Property-based testing is NOT included as SkeletonMap is primarily a UI/UX application with side effects
 - Testing strategy: 70% integration tests (user workflows), 25% unit tests (services/utilities), 5% manual tests
 - All image processing happens client-side for privacy (no backend required)
 - Demo mode enables immediate demonstration without requiring X-ray uploads

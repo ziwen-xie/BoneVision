@@ -21,7 +21,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { fitImageInContainer } from '../utils/geometry';
 import type { XRayViewerProps } from '../types';
 import InteractiveOverlay from './InteractiveOverlay';
@@ -32,9 +32,9 @@ interface Size {
 }
 
 export default function XRayViewer({ className = '' }: XRayViewerProps) {
-  const xrayImage = useBoneVisionStore((state) => state.xrayImage);
-  const isLoadingXray = useBoneVisionStore((state) => state.isLoadingXray);
-  const mappingConfig = useBoneVisionStore((state) => state.mappingConfig);
+  const xrayImage = useSkeletonMapStore((state) => state.xrayImage);
+  const isLoadingXray = useSkeletonMapStore((state) => state.isLoadingXray);
+  const mappingConfig = useSkeletonMapStore((state) => state.mappingConfig);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState<Size>({

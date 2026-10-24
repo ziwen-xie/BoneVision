@@ -1,13 +1,13 @@
 /**
- * BoneVision Zustand Store
+ * SkeletonMap Zustand Store
  * 
- * Central state management for the BoneVision application.
+ * Central state management for the SkeletonMap application.
  * Manages bone selection, hover states, X-ray image data, 3D viewer state,
  * camera control, and loading/error states.
  */
 
 import { create } from 'zustand';
-import type { BoneVisionStore, ImageData } from '../types';
+import type { SkeletonMapStore, ImageData } from '../types';
 import {
   getBoneBounds,
   getSkeletonBounds,
@@ -43,7 +43,7 @@ let demoInitialization: Promise<void> | null = null;
  */
 let modeGeneration = 0;
 
-const useBoneVisionStore = create<BoneVisionStore>((set, get) => ({
+const useSkeletonMapStore = create<SkeletonMapStore>((set, get) => ({
   // ============================================================================
   // Interaction State
   // ============================================================================
@@ -528,4 +528,4 @@ function getFormatFromFile(file: File): 'jpeg' | 'png' | 'dicom' {
   return 'jpeg';
 }
 
-export default useBoneVisionStore;
+export default useSkeletonMapStore;

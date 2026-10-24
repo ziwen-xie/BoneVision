@@ -11,11 +11,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Header from './Header';
-import useBoneVisionStore from '../stores/useBoneVisionStore';
+import useSkeletonMapStore from '../stores/useSkeletonMapStore';
 
 beforeEach(() => {
   window.location.hash = '#/viewer';
-  useBoneVisionStore.getState().reset();
+  useSkeletonMapStore.getState().reset();
 });
 
 afterEach(() => {
@@ -39,7 +39,7 @@ describe('Header', () => {
 
     // The wordmark and the mark are both inside it, so the target is the whole
     // block rather than the glyph.
-    expect(home).toHaveTextContent('BoneVision');
+    expect(home).toHaveTextContent('SkeletonMap');
     expect(home.querySelector('svg')).not.toBeNull();
 
     // Keyboard reachable with something visible on arrival.
@@ -68,7 +68,7 @@ describe('Header', () => {
 
     await user.click(toggle);
 
-    expect(useBoneVisionStore.getState().mode).toBe('upload');
+    expect(useSkeletonMapStore.getState().mode).toBe('upload');
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /switch to demo mode/i })

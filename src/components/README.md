@@ -1,6 +1,6 @@
 # Components
 
-This directory contains React components for the BoneVision application.
+This directory contains React components for the SkeletonMap application.
 
 ## Structure
 

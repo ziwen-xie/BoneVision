@@ -50,7 +50,7 @@
 
 import { useState } from 'react';
 import { useDropzone, type FileRejection } from 'react-dropzone';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { loadImage } from '../services/imageService';
 import {
   validateFile,
@@ -125,7 +125,7 @@ function PrivacyNotice() {
           Your X-ray stays on your device
         </h3>
         <p className="mt-1 text-sm leading-relaxed text-success-800">
-          BoneVision opens your image entirely inside this browser tab. It is
+          SkeletonMap opens your image entirely inside this browser tab. It is
           never uploaded to a server, never sent to anyone else, and is not
           saved anywhere on this device. Close or reload the tab and the image is
           gone from memory.
@@ -138,7 +138,7 @@ function PrivacyNotice() {
 export default function UploadHandler({
   onUploadComplete,
 }: UploadHandlerProps) {
-  const loadXray = useBoneVisionStore((state) => state.loadXray);
+  const loadXray = useSkeletonMapStore((state) => state.loadXray);
 
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -274,7 +274,7 @@ export default function UploadHandler({
         Upload your X-ray
       </h2>
       <p className="mt-2 text-base leading-relaxed text-neutral-800">
-        Drop an image below, or browse for one, and BoneVision will walk you
+        Drop an image below, or browse for one, and SkeletonMap will walk you
         through the bones it shows.
       </p>
 
@@ -355,7 +355,7 @@ export default function UploadHandler({
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3">
           <p className="text-sm leading-relaxed text-neutral-700">
             <span className="font-semibold">{unmappedFileName}</span> is loaded.
-            Tell BoneVision which body part it shows to start exploring.
+            Tell SkeletonMap which body part it shows to start exploring.
           </p>
           <button
             type="button"

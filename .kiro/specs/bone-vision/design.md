@@ -2,7 +2,7 @@
 
 ## Overview
 
-BoneVision is a browser-based educational web application that combines X-ray image visualization with interactive 3D anatomical models to bridge the healthcare communication gap between medical professionals and patients. The application enables users to upload X-ray images (initially focusing on foot anatomy) and explore corresponding 3D bone models with synchronized highlighting and educational content delivery.
+SkeletonMap is a browser-based educational web application that combines X-ray image visualization with interactive 3D anatomical models to bridge the healthcare communication gap between medical professionals and patients. The application enables users to upload X-ray images (initially focusing on foot anatomy) and explore corresponding 3D bone models with synchronized highlighting and educational content delivery.
 
 ### Core User Experience Flow
 
@@ -127,7 +127,7 @@ Centralized state using Zustand stores for reactive updates across components.
 
 **Primary Store Structure**:
 ```typescript
-interface BoneVisionStore {
+interface SkeletonMapStore {
   // Current interaction state
   selectedBoneId: string | null;
   hoveredBoneId: string | null;
@@ -154,7 +154,7 @@ interface BoneVisionStore {
 ```
 
 **Store Modules**:
-- `useBoneVisionStore` - Main application state
+- `useSkeletonMapStore` - Main application state
 - `useEducationalContentStore` - Cached educational content for bones
 
 #### 3. Component Layer
@@ -627,7 +627,7 @@ interface ImageData {
 // State Management
 // ============================================================================
 
-interface BoneVisionStore {
+interface SkeletonMapStore {
   // Interaction state
   selectedBoneId: string | null;
   hoveredBoneId: string | null;
@@ -783,7 +783,7 @@ function scaleCoordinates(
 **Core Structure**:
 ```typescript
 function ModelViewer({ className }: ModelViewerProps) {
-  const { selectedBoneId, hoveredBoneId, setHoveredBone, setSelectedBone } = useBoneVisionStore();
+  const { selectedBoneId, hoveredBoneId, setHoveredBone, setSelectedBone } = useSkeletonMapStore();
   
   return (
     <div className={className}>
@@ -855,7 +855,7 @@ function BoneModelGroup({
   onBoneHover
 }: BoneModelGroupProps) {
   const { scene } = useGLTF(modelPath);
-  const { mappingConfig } = useBoneVisionStore();
+  const { mappingConfig } = useSkeletonMapStore();
   
   const boneMeshes = useMemo(() => {
     const meshes = new Map<string, THREE.Mesh>();
@@ -918,7 +918,7 @@ import { Interactive } from '@react-three/drei';
 ```typescript
 function CameraAnimator() {
   const { camera } = useThree();
-  const { cameraPosition, cameraTarget, isAnimatingCamera } = useBoneVisionStore();
+  const { cameraPosition, cameraTarget, isAnimatingCamera } = useSkeletonMapStore();
   
   const targetPosition = useRef(new THREE.Vector3(...cameraPosition));
   const targetLookAt = useRef(new THREE.Vector3(...cameraTarget));
@@ -930,7 +930,7 @@ function CameraAnimator() {
       
       if (animationProgress.current >= 1) {
         animationProgress.current = 1;
-        useBoneVisionStore.setState({ isAnimatingCamera: false });
+        useSkeletonMapStore.setState({ isAnimatingCamera: false });
       }
       
       // Ease-out cubic easing
@@ -950,7 +950,7 @@ function CameraAnimator() {
 **Structure**:
 ```typescript
 function EducationalPanel({ className }: EducationalPanelProps) {
-  const { hoveredBoneId, selectedBoneId, mappingConfig } = useBoneVisionStore();
+  const { hoveredBoneId, selectedBoneId, mappingConfig } = useSkeletonMapStore();
   
   const activeBoneId = hoveredBoneId || selectedBoneId;
   const boneInfo = mappingConfig?.bones.find(b => b.id === activeBoneId);
@@ -998,7 +998,7 @@ function EducationalPanel({ className }: EducationalPanelProps) {
         </>
       ) : (
         <div className="text-gray-600">
-          <h2 className="text-xl font-bold mb-3">Welcome to BoneVision</h2>
+          <h2 className="text-xl font-bold mb-3">Welcome to SkeletonMap</h2>
           <p className="mb-2">
             Hover over or click on bones in either the X-ray or 3D model to learn about anatomy.
           </p>
@@ -1588,7 +1588,7 @@ Phalanges_2_5 (can be a group or individual meshes)
 
 **React Error Boundary**:
 ```typescript
-class BoneVisionErrorBoundary extends React.Component<
+class SkeletonMapErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean; error: Error | null }
 > {
@@ -1602,7 +1602,7 @@ class BoneVisionErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('BoneVision Error:', error, errorInfo);
+    console.error('SkeletonMap Error:', error, errorInfo);
     // Optional: Send to error tracking service
   }
 
@@ -1821,13 +1821,13 @@ test('Synchronized highlighting works in both directions', async ({ page }) => {
   await page.mouse.move(0, 0);
   
   // Check that highlights are cleared
-  await expect(page.locator('[data-testid="bone-name"]')).toContainText('Welcome to BoneVision');
+  await expect(page.locator('[data-testid="bone-name"]')).toContainText('Welcome to SkeletonMap');
 });
 ```
 
 ### Property-Based Testing
 
-**Note**: Property-based testing is NOT applicable to BoneVision because:
+**Note**: Property-based testing is NOT applicable to SkeletonMap because:
 1. **UI rendering and layout**: The application is primarily a visual interface where "correctness" is subjective (Does the X-ray look right? Is the 3D model positioned well?)
 2. **External dependencies**: 3D rendering relies on WebGL, file I/O, and browser APIs with side effects
 3. **Interaction workflows**: User interactions (hover, click, drag) are inherently stateful and side-effect-driven

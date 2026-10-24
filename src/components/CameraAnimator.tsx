@@ -28,7 +28,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useBoneVisionStore } from '../stores';
+import { useSkeletonMapStore } from '../stores';
 import { ANIMATION_DURATIONS } from '../types';
 import { easeOutCubic } from '../utils/cameraFraming';
 
@@ -59,9 +59,9 @@ export default function CameraAnimator() {
   const camera = useThree((state) => state.camera);
   const rawControls = useThree((state) => state.controls);
 
-  const cameraPosition = useBoneVisionStore((state) => state.cameraPosition);
-  const cameraTarget = useBoneVisionStore((state) => state.cameraTarget);
-  const isAnimatingCamera = useBoneVisionStore((state) => state.isAnimatingCamera);
+  const cameraPosition = useSkeletonMapStore((state) => state.cameraPosition);
+  const cameraTarget = useSkeletonMapStore((state) => state.cameraTarget);
+  const isAnimatingCamera = useSkeletonMapStore((state) => state.isAnimatingCamera);
 
   const controls = asOrbitControls(rawControls);
 
@@ -122,7 +122,7 @@ export default function CameraAnimator() {
 
     if (progress >= 1) {
       // Releases the camera back to OrbitControls.
-      useBoneVisionStore.setState({ isAnimatingCamera: false });
+      useSkeletonMapStore.setState({ isAnimatingCamera: false });
     }
   });
 

@@ -18,7 +18,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import LandingPage from './LandingPage';
-import useBoneVisionStore from '../stores/useBoneVisionStore';
+import useSkeletonMapStore from '../stores/useSkeletonMapStore';
 
 /**
  * The store's actions survive `reset()`, which only clears data fields, so a
@@ -26,7 +26,7 @@ import useBoneVisionStore from '../stores/useBoneVisionStore';
  * Captured once here and re-asserted before each test instead.
  */
 const REAL_ACTIONS = {
-  initializeDemo: useBoneVisionStore.getState().initializeDemo,
+  initializeDemo: useSkeletonMapStore.getState().initializeDemo,
 };
 
 /**
@@ -46,8 +46,8 @@ function firstButton(name: RegExp): HTMLElement {
 
 beforeEach(() => {
   window.location.hash = '';
-  useBoneVisionStore.setState(REAL_ACTIONS);
-  useBoneVisionStore.getState().reset();
+  useSkeletonMapStore.setState(REAL_ACTIONS);
+  useSkeletonMapStore.getState().reset();
 });
 
 afterEach(() => {
@@ -65,7 +65,7 @@ describe('LandingPage', () => {
     expect(headings[0]).toHaveTextContent(/understand what your x-ray/i);
 
     // The brand has to be present without stealing the single h1.
-    expect(screen.getAllByText('BoneVision').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('SkeletonMap').length).toBeGreaterThan(0);
   });
 
   it('keeps heading levels in order with none skipped', () => {
@@ -113,14 +113,14 @@ describe('LandingPage', () => {
   it('sends the demo action to the viewer in demo mode', async () => {
     const user = userEvent.setup();
     const initializeDemo = vi.fn().mockResolvedValue(undefined);
-    useBoneVisionStore.setState({ initializeDemo });
+    useSkeletonMapStore.setState({ initializeDemo });
 
     render(<LandingPage />);
 
     await user.click(firstButton(/try the demo/i));
 
     expect(window.location.hash).toBe('#/viewer');
-    expect(useBoneVisionStore.getState().mode).toBe('demo');
+    expect(useSkeletonMapStore.getState().mode).toBe('demo');
   });
 
   it('sends the upload action to the viewer in upload mode', async () => {
@@ -133,7 +133,7 @@ describe('LandingPage', () => {
 
     // `prepareUpload` ran: upload mode with the demo content cleared, so the
     // viewer opens on the drop zone rather than the sample foot.
-    const state = useBoneVisionStore.getState();
+    const state = useSkeletonMapStore.getState();
     expect(state.mode).toBe('upload');
     expect(state.xrayImage).toBeNull();
     expect(state.mappingConfig).toBeNull();
@@ -142,8 +142,8 @@ describe('LandingPage', () => {
   it('switches back to demo mode when the demo action follows an upload', async () => {
     const user = userEvent.setup();
     const initializeDemo = vi.fn().mockResolvedValue(undefined);
-    useBoneVisionStore.setState({ initializeDemo });
-    useBoneVisionStore.getState().prepareUpload();
+    useSkeletonMapStore.setState({ initializeDemo });
+    useSkeletonMapStore.getState().prepareUpload();
 
     render(<LandingPage />);
 
@@ -158,7 +158,7 @@ describe('LandingPage', () => {
     const user = userEvent.setup();
     const initializeDemo = vi.fn().mockResolvedValue(undefined);
     const fetchSpy = vi.fn();
-    useBoneVisionStore.setState({ initializeDemo });
+    useSkeletonMapStore.setState({ initializeDemo });
     vi.stubGlobal('fetch', fetchSpy);
 
     /*
@@ -169,7 +169,7 @@ describe('LandingPage', () => {
       below has observable work to do, since `setMode('demo')` in demo mode is
       a deliberate no-op.
     */
-    useBoneVisionStore.getState().prepareUpload();
+    useSkeletonMapStore.getState().prepareUpload();
 
     render(<LandingPage />);
 
@@ -271,12 +271,12 @@ describe('LandingPage', () => {
       expect(image.getAttribute('alt')).toMatch(/radiograph/i);
 
       /*
-        Pages serves this app from /BoneVision/, so a bare "/landing/..." would
+        Pages serves this app from /SkeletonMap/, so a bare "/landing/..." would
         resolve in dev and 404 in production - a failure that only appears after
         deploy, which this project has already been bitten by once.
         `import.meta.env.BASE_URL` is the existing fix, used by the store for
         the demo image and the bone map, and vite.config.ts sets `base` to
-        '/BoneVision/' for tests too, so this assertion genuinely distinguishes
+        '/SkeletonMap/' for tests too, so this assertion genuinely distinguishes
         the two spellings rather than passing on a base of '/'.
       */
       const src = image.getAttribute('src') ?? '';
